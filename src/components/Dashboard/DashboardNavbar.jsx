@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineArrowLeft, AiFillDashboard } from "react-icons/ai";
-import { BiBookOpen } from "react-icons/bi";
+import { BiBookOpen, BiSolidBookAdd, BiSolidCategoryAlt } from "react-icons/bi";
 
 const dahshoardMenu = [
   {
@@ -19,13 +19,13 @@ const dahshoardMenu = [
   {
     id: 3,
     title: "Update Book",
-    icon: "",
-    href: "/update-book",
+    icon: <BiSolidBookAdd />,
+    href: "/dashboard/update-book",
   },
   {
     id: 4,
     title: "Category",
-    icon: "",
+    icon: <BiSolidCategoryAlt />,
     href: "/dashboard/category",
   },
 ];
@@ -82,7 +82,7 @@ const DashboardNavbar = ({ outLet }) => {
                   </div>
                 </div>
               </div>
-              <div className="pb-6 mt-4 overflow-x-hidden overflow-y-auto ">
+              <div className="pb-6 mt-4 overflow-x-hidden overflow-y-auto border-t border-solid border-primaryColor">
                 <ul className="mb-8 text-sm">
                   {dahshoardMenu.map((menu) => (
                     <li
