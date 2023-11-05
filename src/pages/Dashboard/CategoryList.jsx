@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import Heading from "../../components/shared/Heading";
 import { useState } from "react";
+import AllCategoryLists from "./AllCategoryLists";
 
 const CategoryList = () => {
   const [imgUrl, setImgUrl] = useState(null);
@@ -72,7 +73,7 @@ const CategoryList = () => {
           </div>
         </form>
         <div>
-          <h2>Category lists</h2>
+          <AllCategoryLists />
         </div>
       </div>
     </div>
