@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import Container from "./shared/Container";
+import Container from "./Container";
 // import { useState } from "react";
 const menuItems = [
   {
@@ -14,13 +14,13 @@ const menuItems = [
   },
   {
     id: 3,
-    name: "Features",
-    href: "/features",
+    name: "All Book",
+    href: "/dashboard/add-book",
   },
   {
     id: 4,
-    name: "Blog",
-    href: "/blog",
+    name: "Dashboard",
+    href: "/dashboard",
   },
   {
     id: 5,
