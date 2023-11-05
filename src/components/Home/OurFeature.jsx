@@ -7,7 +7,7 @@ const OurFeature = () => {
       <Container>
         <div className="max-w-xl mx-auto">
           <div className="text-center ">
-            <Heading headings={"Features"} title={"FEATURES"} />
+            <Heading headings={"Features"} title={"FEATURES"} span={"Our"} />
             <p className="mb-16 text-base text-center text-gray-500">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus
               magni eius eaque? Pariatur numquam, odio quod nobis ipsum ex

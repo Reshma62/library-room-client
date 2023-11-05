@@ -1,4 +1,5 @@
 import Banner from "../../components/Home/Banner";
+import Category from "../../components/Home/Category";
 import OurFeature from "../../components/Home/OurFeature";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
     <>
       <Banner />
       <OurFeature />
+      <Category />
     </>
   );
 };

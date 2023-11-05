@@ -7,7 +7,7 @@ const RootLayout = () => {
   const { data, isLoading } = useQueryDataTest();
   console.log(data, isLoading);
   return (
-    <div>
+    <div className="font-Cabin">
       <Header />
       <Outlet />
       <Footer />

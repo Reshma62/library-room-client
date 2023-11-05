@@ -3,7 +3,7 @@ import DashboardNavbar from "../components/Dashboard/DashboardNavbar";
 
 const DashboardLayout = () => {
   return (
-    <div>
+    <div className="font-Cabin">
       <DashboardNavbar outLet={<Outlet />} />
 
       <p>footer</p>

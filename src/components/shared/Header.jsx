@@ -15,7 +15,7 @@ const menuItems = [
   {
     id: 3,
     name: "All Book",
-    href: "/dashboard/add-book",
+    href: "/all-books",
   },
 
   {

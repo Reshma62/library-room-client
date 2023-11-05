@@ -9,6 +9,12 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import UpdateBook from "../pages/Dashboard/UpdateBook";
 import AllBookList from "../pages/Dashboard/AllBookList";
 import CategoryList from "../pages/Dashboard/CategoryList";
+import AllBooks from "../pages/AllBooks/AllBooks";
+import CategoryBasedBooks from "../pages/CategoryBasedBooks/CategoryBasedBooks";
+import BorrowedBooks from "../pages/BorrowedBooks/BorrowedBooks";
+import DetailsPage from "../pages/DetailsPage/DetailsPage";
+import AboutPage from "../pages/AboutPage/AboutPage";
+import ReadBook from "../pages/ReadBook/ReadBook";
 
 const MainRoute = createBrowserRouter([
   {
@@ -22,8 +28,32 @@ const MainRoute = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: "about",
+        element: <AboutPage />,
+      },
+      {
         path: "login",
         element: <Login />,
+      },
+      {
+        path: "all-books",
+        element: <AllBooks />,
+      },
+      {
+        path: "borrowed-books",
+        element: <BorrowedBooks />,
+      },
+      {
+        path: "read-books",
+        element: <ReadBook />,
+      },
+      {
+        path: "books/:category",
+        element: <CategoryBasedBooks />,
+      },
+      {
+        path: "books-details/:id",
+        element: <DetailsPage />,
       },
     ],
   },
