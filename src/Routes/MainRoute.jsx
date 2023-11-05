@@ -30,6 +30,7 @@ const MainRoute = createBrowserRouter([
   {
     path: "/dashboard",
     element: <DashboardLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/dashboard",

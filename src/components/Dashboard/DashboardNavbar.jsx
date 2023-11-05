@@ -1,37 +1,39 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { AiOutlineArrowLeft, AiFillDashboard } from "react-icons/ai";
 import { BiBookOpen, BiSolidBookAdd, BiSolidCategoryAlt } from "react-icons/bi";
-
 const dahshoardMenu = [
   {
-    id: 1,
+    id: "/dashboard",
     title: "Dashboard",
     icon: <AiFillDashboard />,
     href: "/dashboard",
   },
   {
-    id: 2,
+    id: "/dashboard/add-book",
     title: "Add Book",
     icon: <BiBookOpen />,
     href: "/dashboard/add-book",
   },
   {
-    id: 3,
+    id: "/dashboard/update-book",
     title: "Update Book",
     icon: <BiSolidBookAdd />,
     href: "/dashboard/update-book",
   },
   {
-    id: 4,
+    id: "/dashboard/category",
     title: "Category",
     icon: <BiSolidCategoryAlt />,
     href: "/dashboard/category",
   },
 ];
 const DashboardNavbar = ({ outLet }) => {
+  const location = useLocation();
+  const pathName = location.pathname;
   const [openSidebar, setOpenSidebar] = useState(true);
-  const [activeMenuId, setActiveMenuId] = useState(1);
+  const [openDropdown, setOpenDropdown] = useState(false);
+  const [activeMenuId, setActiveMenuId] = useState(pathName);
 
   return (
     <>
@@ -88,7 +90,7 @@ const DashboardNavbar = ({ outLet }) => {
                     <li
                       key={menu.id}
                       className={
-                        menu.id === activeMenuId
+                        menu.id == activeMenuId
                           ? "bg-primaryColor text-white"
                           : "bg-transparent text-primaryColor"
                       }
@@ -210,7 +212,10 @@ const DashboardNavbar = ({ outLet }) => {
                               John Doe
                             </p>
                           </div>
-                          <div className="mr-2">
+                          <div
+                            className="mr-2"
+                            onClick={() => setOpenDropdown(!openDropdown)}
+                          >
                             <img
                               src="https://i.postimg.cc/pr2Q6n1w/pexels-italo-melo-2379005.jpg"
                               className="object-cover object-right w-10 h-10 rounded-full"
@@ -219,7 +224,7 @@ const DashboardNavbar = ({ outLet }) => {
                           </div>
                           <span>
                             <svg
-                              className="text-gray-400"
+                              className="text-gray-400 iconme"
                               width="10"
                               height="6"
                               viewBox="0 0 10 6"
@@ -236,7 +241,9 @@ const DashboardNavbar = ({ outLet }) => {
                       </div>
                       <div
                         id="dropdown_profile"
-                        className="absolute right-0 w-48 mt-3 origin-top-right bg-white rounded shadow sdftext-gray-100 sdfbg-gray-700 hidden"
+                        className={`absolute right-0 w-48 mt-3 origin-top-right bg-white rounded shadow sdftext-gray-100 sdfbg-gray-700 ${
+                          openDropdown ? "block" : "hidden"
+                        } `}
                       >
                         <div className="py-1">
                           <a

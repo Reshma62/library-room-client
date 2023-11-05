@@ -17,15 +17,16 @@ const menuItems = [
     name: "All Book",
     href: "/dashboard/add-book",
   },
+
   {
     id: 4,
-    name: "Dashboard",
-    href: "/dashboard",
+    name: "Borrowed Books",
+    href: "/borrowed-books",
   },
   {
     id: 5,
-    name: "Testimonials",
-    href: "/testimonials",
+    name: "Dashboard",
+    href: "/dashboard",
   },
 ];
 const Header = () => {
