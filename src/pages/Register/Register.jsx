@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-const Login = () => {
+const Register = () => {
   const [showPass, setshowPass] = useState(false);
   const {
     register,
@@ -26,10 +26,10 @@ const Login = () => {
         <div className="bg-slate-900/50 py-20">
           <div className="max-w-6xl mx-auto pb-24">
             <span className="inline-block text-base font-medium text-white sdftext-blue-300">
-              Welcome Back
+              Welcome To
             </span>
             <h2 className="mb-6 font-semibold text-white text-7xl sdftext-gray-300">
-              Login Your Library
+              Library Room
             </h2>
             <p className="mb-6 text-xl text-white">
               Unlocking Potential Through Learning
@@ -41,14 +41,29 @@ const Login = () => {
         <div className="w-full shadow-lg bg-white sdfbg-gray-800 mt-11 lg:-mt-36 lg:full p-7 rounded-3xl">
           <span className="flex justify-end mb-8">
             <Link
-              to="/register"
+              to="/login"
               className="px-4 py-3 text-sm font-medium text-gray-100 bg-primaryColor hover:text-blue-200 rounded-lg"
             >
-              Register Account
+              Login Account
             </Link>
           </span>
           <div className="">
             <form className="p-0 m-0" onSubmit={handleSubmit(submitData)}>
+              <div className="mb-6">
+                <p className="text-lg text-primaryColor font-bold">Name</p>
+                <div className="relative flex items-center">
+                  <input
+                    {...register("userName", { required: true })}
+                    type="text"
+                    className="w-full px-4 py-4 bg-gray-200 rounded-lg lg:py-5 sdftext-gray-300 sdfbg-gray-700 "
+                    name="password"
+                    placeholder="Enter Name"
+                  />
+                </div>
+                {errors.userName && (
+                  <p className="text-red-500">Name is required</p>
+                )}
+              </div>
               <div className="mb-7">
                 <p className="text-lg text-primaryColor font-bold">Email</p>
                 <input
@@ -61,7 +76,6 @@ const Login = () => {
                 {errors.email && (
                   <p className="text-red-500">Email is required</p>
                 )}
-                {/* Access error for the "email" field */}
               </div>
               <div className="mb-6">
                 <p className="text-lg text-primaryColor font-bold">Password</p>
@@ -87,20 +101,27 @@ const Login = () => {
                   <p className="text-red-500">Password is required</p>
                 )}
               </div>
-
-              <div className="mt-6 text-right">
-                <Link
-                  to="#"
-                  className="text-sm font-semibold text-primaryColor sdftext-blue-300 sdfhover:text-blue-500"
-                >
-                  forgot password?
-                </Link>
+              <div className="mb-6">
+                <div className="relative ">
+                  <p className="text-lg text-primaryColor font-bold">Role</p>
+                  <select
+                    name="role"
+                    {...register("role", { required: true })}
+                    className="w-full px-4 py-4 bg-gray-200 rounded-lg lg:py-5 sdftext-gray-300 sdfbg-gray-700 "
+                  >
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                </div>
+                {errors.role && (
+                  <p className="text-red-500">Role is required</p>
+                )}
               </div>
               <button
                 className="w-full px-4 py-4 mt-6 font-medium text-gray-200 bg-primaryColor rounded-lg sdfbg-blue-500 hover:text-blue-200 "
                 type="submit"
               >
-                LOGIN
+                Register
               </button>
               <div className="py-5 text-base text-center text-gray-600 sdftext-gray-400">
                 Or login with
@@ -162,4 +183,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
