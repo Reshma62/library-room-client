@@ -4,8 +4,10 @@ import { useState } from "react";
 import AllCategoryLists from "./AllCategoryLists";
 import useAxios from "../../Hooks/useAxios";
 import toast from "react-hot-toast";
+import useQueryCategory from "../../Hooks/useQueryCategory";
 
 const CategoryList = () => {
+  const { data, isLoading, refetch } = useQueryCategory();
   const [imgUrl, setImgUrl] = useState(null);
 
   const axios = useAxios();
@@ -35,10 +37,12 @@ const CategoryList = () => {
         if (res.data.insertedId) {
           toast.success("Category added successfully");
           from.reset();
+          refetch();
         }
       })
       .catch((err) => toast.error("category added failed"));
   };
+
   return (
     <div className="pt-20">
       <Heading title={"Add Category"} span={"Add"} headings={"Category"} />
@@ -91,7 +95,11 @@ const CategoryList = () => {
           </div>
         </form>
         <div>
-          <AllCategoryLists />
+          <AllCategoryLists
+            data={data}
+            isLoading={isLoading}
+            refetch={refetch}
+          />
         </div>
       </div>
     </div>

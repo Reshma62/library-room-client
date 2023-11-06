@@ -1,4 +1,31 @@
-const AllCategoryLists = () => {
+import toast from "react-hot-toast";
+import useAxios from "../../Hooks/useAxios";
+
+import Loading from "../../components/shared/Loading";
+import { AiFillDelete, AiFillEdit } from "react-icons/ai";
+const AllCategoryLists = ({ data, isLoading, refetch }) => {
+  const axios = useAxios();
+  if (isLoading) {
+    return <Loading />;
+  }
+  const handleDelete = async (id) => {
+    console.log(id);
+    axios
+      .delete(`/admin/delete-category/${id}`)
+      .then((result) => {
+        console.log(result);
+        if (result.data?.success) {
+          toast.success("Category deleted successfully");
+          refetch();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const handleEdit = async (id) => {
+    console.log(id);
+  };
   return (
     <section className=" font-poppins sdfbg-gray-800 ">
       <div className="justify-center px-4 py-4 mx-auto lg:py-8 md:px-6 w-[800px]">
@@ -44,106 +71,35 @@ const AllCategoryLists = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr className="text-sm bg-white sdftext-gray-400 sdfbg-gray-800">
-                  <td className="flex items-center px-6 py-5 font-medium">
-                    <input className="mr-4" type="checkbox" name="" id="" />
-                    <p className="">General Purpose Report</p>
-                  </td>
-                  <td className="px-6 py-5 font-medium ">
-                    <img
-                      src=""
-                      alt="category img"
-                      className="w-12 h-12 border border-solid border-primaryColor"
-                    />
-                  </td>
+                {data?.map((item) => (
+                  <tr
+                    key={item._id}
+                    className="text-sm bg-white sdftext-gray-400 sdfbg-gray-800"
+                  >
+                    <td className="flex items-center px-6 py-5 font-medium">
+                      <input className="mr-4" type="checkbox" name="" id="" />
+                      <p className="">{item.name}</p>
+                    </td>
+                    <td className="px-6 py-5 font-medium ">
+                      <img
+                        src={`http://localhost:8000${item.CategoryPhoto}`}
+                        alt="category img"
+                        className="w-12 h-12 border border-solid border-primaryColor"
+                      />
+                    </td>
 
-                  <td className="flex items-center px-6 py-5 ">
-                    <a
-                      href="#"
-                      className="font-medium text-blue-600 hover:text-blue-500 sdfhover:text-gray-300 sdftext-blue-300"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        className="w-4 h-4 mr-3 bi bi-pencil-square"
-                        viewBox="0 0 16 16"
-                      >
-                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                        <path
-                          fillRule="evenodd"
-                          d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
-                        />
-                      </svg>
-                    </a>
-                    <a
-                      href="#"
-                      className="font-medium text-red-600 hover:text-red-500 sdfhover:text-red-300 sdftext-red-400"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        className="w-4 h-4 bi bi-trash-fill"
-                        viewBox="0 0 16 16"
-                      >
-                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
-                      </svg>
-                    </a>
-                  </td>
-                </tr>
-                <tr className="text-sm  sdftext-gray-400 sdfbg-gray-800">
-                  <td className="flex items-center px-6 py-5 font-medium">
-                    <input className="mr-4" type="checkbox" name="" id="" />
-                    <p className="">General Purpose Report</p>
-                  </td>
-                  <td className="px-6 py-5 font-medium ">
-                    <img
-                      src=""
-                      alt="category img"
-                      className="w-12 h-12 border border-solid border-primaryColor"
-                    />
-                  </td>
-
-                  <td className="flex items-center px-6 py-5 ">
-                    <a
-                      href="#"
-                      className="font-medium text-blue-600 hover:text-blue-500 sdfhover:text-gray-300 sdftext-blue-300"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        className="w-4 h-4 mr-3 bi bi-pencil-square"
-                        viewBox="0 0 16 16"
-                      >
-                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                        <path
-                          fillRule="evenodd"
-                          d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
-                        />
-                      </svg>
-                    </a>
-                    <a
-                      href="#"
-                      className="font-medium text-red-600 hover:text-red-500 sdfhover:text-red-300 sdftext-red-400"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        className="w-4 h-4 bi bi-trash-fill"
-                        viewBox="0 0 16 16"
-                      >
-                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
-                      </svg>
-                    </a>
-                  </td>
-                </tr>
+                    <td className="flex items-center gap-4 px-6 py-5 ">
+                      <AiFillDelete
+                        className="text-2xl text-red-600 cursor-pointer"
+                        onClick={() => handleDelete(item._id)}
+                      />
+                      <AiFillEdit
+                        className="text-2xl text-primaryColor cursor-pointer"
+                        onClick={() => handleEdit(item._id)}
+                      />
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
             <div className="flex justify-end pt-4 mt-4 border-t sdfborder-gray-700">
