@@ -2,30 +2,48 @@ import { useForm } from "react-hook-form";
 import Heading from "../../components/shared/Heading";
 import { useState } from "react";
 import AllCategoryLists from "./AllCategoryLists";
+import useAxios from "../../Hooks/useAxios";
+import toast from "react-hot-toast";
 
 const CategoryList = () => {
   const [imgUrl, setImgUrl] = useState(null);
-  const {
-    register,
-    handleSubmit,
-    // formState: { errors },
-  } = useForm();
+
+  const axios = useAxios();
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    console.log(file);
     setImgUrl(URL.createObjectURL(file));
   };
-  const submitData = (data) => {
-    console.log(data);
-    const selectedFile = data.bookPhoto[0];
-    console.log({ selectedFile });
+
+  const handleDataSend = (e) => {
+    e.preventDefault();
+    const from = e.target;
+    const name = from.categoryName.value;
+    const image = from.categoryPhoto.files[0];
+
+    const data = { image, name };
+    axios
+      .post("/admin/create-category", data, {
+        headers: {
+          "Content-Type": "multipart/form-data", // Important for file uploads
+        },
+      })
+      .then((res) => {
+        if (res.data.error) {
+          toast.error(res.data.error);
+        }
+        if (res.data.insertedId) {
+          toast.success("Category added successfully");
+          from.reset();
+        }
+      })
+      .catch((err) => toast.error("category added failed"));
   };
   return (
     <div className="pt-20">
       <Heading title={"Add Category"} span={"Add"} headings={"Category"} />
       <div className="flex gap-8">
-        <form onSubmit={handleSubmit(submitData)} className="font-Cabin ">
+        <form onSubmit={handleDataSend} className="font-Cabin ">
           <div className="flex gap-8">
             <div>
               <div className="w-[500px] mb-3">
@@ -33,9 +51,9 @@ const CategoryList = () => {
                   Add Category
                 </label>
                 <input
-                  {...register("bookName")}
                   className="border border-solid border-primaryColor w-full px-5 py-2 rounded-lg"
                   placeholder="Enter the Book Name"
+                  name="categoryName"
                 />
               </div>
 
@@ -52,12 +70,12 @@ const CategoryList = () => {
                   />
                 </div>
                 <label className="block pt-2">
-                  <span className="sr-only ">Choose Book photo</span>
+                  <span className="sr-only ">Choose Category photo</span>
                   <input
                     type="file"
                     className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold dark:file:bg-gray-600 dark:file:text-gray-200 dark:hover:file:bg-gray-700 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 "
-                    {...register("bookPhoto")}
                     onChange={handleFileChange}
+                    name="categoryPhoto"
                   />
                 </label>
               </div>
