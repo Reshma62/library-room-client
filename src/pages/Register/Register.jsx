@@ -13,7 +13,10 @@ import {
   uploadString,
   getDownloadURL,
 } from "firebase/storage";
+import axios from "axios";
+// import useAxios from "../../Hooks/useAxios";
 const Register = () => {
+  // const axios = useAxios();
   const [image, setImage] = useState(null);
   const [imageURL, setImageURL] = useState(null);
   const [cropData, setCropData] = useState("");
@@ -73,6 +76,13 @@ const Register = () => {
   const submitData = (data) => {
     // console.log(Object.keys(data).join(", "));
     const { userName, email, password, role } = data;
+    const userInfo = {
+      userName,
+      email,
+      password,
+      role,
+      profilepic: imageURL,
+    };
     console.log(email);
     console.log(image);
     createUser(email, password)
@@ -86,6 +96,14 @@ const Register = () => {
             setTimeout(() => {
               navigate("/login");
             }, 1500);
+            axios
+              .post("http://localhost:8000/api/v1/auth/register-user", userInfo)
+              .then((result) => {
+                console.log(95, result.data);
+              })
+              .catch((err) => {
+                console.log("error is: ", err);
+              });
           })
           .catch((err) => {
             console.log(err, 47);
