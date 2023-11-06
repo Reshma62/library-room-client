@@ -16,6 +16,7 @@ import DetailsPage from "../pages/DetailsPage/DetailsPage";
 import AboutPage from "../pages/AboutPage/AboutPage";
 import ReadBook from "../pages/ReadBook/ReadBook";
 import Register from "../pages/Register/Register";
+import PrivateRoute from "./PrivateRoute";
 
 const MainRoute = createBrowserRouter([
   {
@@ -30,7 +31,11 @@ const MainRoute = createBrowserRouter([
       },
       {
         path: "about",
-        element: <AboutPage />,
+        element: (
+          <PrivateRoute>
+            <AboutPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "login",
@@ -42,23 +47,43 @@ const MainRoute = createBrowserRouter([
       },
       {
         path: "all-books",
-        element: <AllBooks />,
+        element: (
+          <PrivateRoute>
+            <AllBooks />
+          </PrivateRoute>
+        ),
       },
       {
         path: "borrowed-books",
-        element: <BorrowedBooks />,
+        element: (
+          <PrivateRoute>
+            <BorrowedBooks />
+          </PrivateRoute>
+        ),
       },
       {
         path: "read-books",
-        element: <ReadBook />,
+        element: (
+          <PrivateRoute>
+            <ReadBook />
+          </PrivateRoute>
+        ),
       },
       {
         path: "books/:category",
-        element: <CategoryBasedBooks />,
+        element: (
+          <PrivateRoute>
+            <CategoryBasedBooks />
+          </PrivateRoute>
+        ),
       },
       {
         path: "books-details/:id",
-        element: <DetailsPage />,
+        element: (
+          <PrivateRoute>
+            <DetailsPage />
+          </PrivateRoute>
+        ),
       },
     ],
   },
@@ -69,23 +94,43 @@ const MainRoute = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: (
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/add-book",
-        element: <AddBook />,
+        element: (
+          <PrivateRoute>
+            <AddBook />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/update-book",
-        element: <UpdateBook />,
+        element: (
+          <PrivateRoute>
+            <UpdateBook />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/all-book-list",
-        element: <AllBookList />,
+        element: (
+          <PrivateRoute>
+            <AllBookList />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/category",
-        element: <CategoryList />,
+        element: (
+          <PrivateRoute>
+            <CategoryList />
+          </PrivateRoute>
+        ),
       },
     ],
   },

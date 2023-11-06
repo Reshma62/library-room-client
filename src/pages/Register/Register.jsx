@@ -13,10 +13,10 @@ import {
   uploadString,
   getDownloadURL,
 } from "firebase/storage";
-import axios from "axios";
-// import useAxios from "../../Hooks/useAxios";
+// import axios from "axios";
+import useAxios from "../../Hooks/useAxios";
 const Register = () => {
-  // const axios = useAxios();
+  const axios = useAxios();
   const [image, setImage] = useState(null);
   const [imageURL, setImageURL] = useState(null);
   const [cropData, setCropData] = useState("");
@@ -65,7 +65,6 @@ const Register = () => {
             setCropData("");
             setImage(null);
             setOpenModal(false);
-            console.log("first,94");
           })
           .catch((error) => {
             alert(error);
@@ -83,13 +82,11 @@ const Register = () => {
       role,
       profilepic: imageURL,
     };
-    console.log(email);
-    console.log(image);
+
     createUser(email, password)
       .then((result) => {
         updateUser(userName, image)
           .then((result) => {
-            console.log(38, result);
             toast.success(
               "Registation successfull. Please wait for redirects.."
             );
@@ -97,10 +94,8 @@ const Register = () => {
               navigate("/login");
             }, 1500);
             axios
-              .post("http://localhost:8000/api/v1/auth/register-user", userInfo)
-              .then((result) => {
-                console.log(95, result.data);
-              })
+              .post("/auth/register-user", userInfo)
+              .then((result) => {})
               .catch((err) => {
                 console.log("error is: ", err);
               });
@@ -110,7 +105,6 @@ const Register = () => {
           });
       })
       .catch((err) => {
-        console.log(err);
         const errorMessage = err.message;
 
         if (errorMessage.includes("auth/email-already-in-use")) {
