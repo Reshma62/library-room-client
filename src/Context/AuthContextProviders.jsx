@@ -24,7 +24,7 @@ const AuthContextProviders = ({ children }) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
-  const updateUser = (name, photo) => {
+  const updateUser = (name = "", photo = null) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,

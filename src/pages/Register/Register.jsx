@@ -1,17 +1,104 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import useAuthContext from "../../Hooks/useAuthContext";
+import { Cropper } from "react-cropper";
+import UploadImg from "../../components/Register/UplaodImag";
+import "cropperjs/dist/cropper.css";
+import {
+  getStorage,
+  ref,
+  uploadString,
+  getDownloadURL,
+} from "firebase/storage";
 const Register = () => {
+  const [image, setImage] = useState(null);
+  const [imageURL, setImageURL] = useState(null);
+  const [cropData, setCropData] = useState("");
+  const [openModal, setOpenModal] = useState(false);
   const [showPass, setshowPass] = useState(false);
+  const { createUser, updateUser } = useAuthContext();
+  const navigate = useNavigate();
+  const cropperRef = useRef(null);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  function toggleModal() {
+    setOpenModal(!openModal);
+  }
+  const handleFileChange = (e) => {
+    setOpenModal(true);
+    e.preventDefault();
+    let files;
+    if (e.dataTransfer) {
+      files = e.dataTransfer.files;
+    } else if (e.target) {
+      files = e.target.files;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      setImage(reader.result);
+    };
+    reader.readAsDataURL(files[0]);
+  };
+  const getCropData = () => {
+    if (typeof cropperRef.current?.cropper !== "undefined") {
+      setCropData(cropperRef.current?.cropper.getCroppedCanvas().toDataURL());
+    }
+    const storage = getStorage();
+    const storageRef = ref(storage, "profilePic/" + Date.now());
+    // Data URL string
+    const message4 = cropperRef.current?.cropper.getCroppedCanvas().toDataURL();
+    uploadString(storageRef, message4, "data_url").then((snapshot) => {
+      getDownloadURL(storageRef).then(async (downloadURL) => {
+        setImageURL(downloadURL);
+        await updateUser("hello", downloadURL)
+          .then(() => {
+            setCropData("");
+            setImage(null);
+            setOpenModal(false);
+            console.log("first,94");
+          })
+          .catch((error) => {
+            alert(error);
+          });
+      });
+    });
+  };
   const submitData = (data) => {
-    console.log({ data });
+    // console.log(Object.keys(data).join(", "));
+    const { userName, email, password, role } = data;
+    console.log(email);
+    console.log(image);
+    createUser(email, password)
+      .then((result) => {
+        updateUser(userName, image)
+          .then((result) => {
+            console.log(38, result);
+            toast.success(
+              "Registation successfull. Please wait for redirects.."
+            );
+            setTimeout(() => {
+              navigate("/login");
+            }, 1500);
+          })
+          .catch((err) => {
+            console.log(err, 47);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+        const errorMessage = err.message;
+
+        if (errorMessage.includes("auth/email-already-in-use")) {
+          toast.error("Email already in use");
+        }
+      });
   };
   return (
     <section className="font-poppins ">
@@ -49,6 +136,74 @@ const Register = () => {
           </span>
           <div className="">
             <form className="p-0 m-0" onSubmit={handleSubmit(submitData)}>
+              <div className="mb-6 overflow-hidden">
+                {openModal && (
+                  <UploadImg
+                    onClick={toggleModal}
+                    titel="Upload your Photo"
+                    show={true}
+                    sendImg={getCropData}
+                  >
+                    <div className="flex flex-col justify-center items-center relative">
+                      {image && (
+                        <div className="border border-solid border-red-800  w-full">
+                          <Cropper
+                            style={{ height: 300, width: "100%" }}
+                            initialAspectRatio={1}
+                            preview=".img-preview"
+                            src={image}
+                            ref={cropperRef}
+                            viewMode={1}
+                            guides={true}
+                            minCropBoxHeight={10}
+                            minCropBoxWidth={10}
+                            background={false}
+                            responsive={true}
+                            checkOrientation={false}
+                          />
+                        </div>
+                      )}
+                      {image ? (
+                        <div className="w-[100px] h-[100px] mx-auto rounded-full overflow-hidden mb-5 border-2 border-solid border-primaryColor">
+                          <div className="img-preview w-full h-full"></div>
+                        </div>
+                      ) : (
+                        <div className="w-[100px] h-[100px]">
+                          <img src="" alt="HELLO" />
+                        </div>
+                      )}
+                      <input
+                        {...register("profilepic", { required: true })}
+                        type="file"
+                        className="w-full px-4 py-4 bg-gray-200 rounded-lg lg:py-5 sdftext-gray-300 sdfbg-gray-700 "
+                        name="profilepic"
+                        id="profilepic"
+                        onChange={handleFileChange}
+                      />
+                    </div>
+                  </UploadImg>
+                )}
+
+                <p className="text-lg text-primaryColor font-bold">
+                  Profile Pic
+                </p>
+                <div className="relative flex items-center">
+                  <label onClick={toggleModal}>
+                    <img
+                      src={
+                        imageURL
+                          ? imageURL
+                          : "https://img.freepik.com/free-photo/cartoon-character-with-yellow-jacket-sunglasses_71767-101.jpg?size=626&ext=jpg&ga=GA1.1.890845763.1697116913&semt=sph"
+                      }
+                      alt=""
+                      className="w-20 h-20 rounded-full"
+                    />
+                  </label>
+                </div>
+                {errors.userName && (
+                  <p className="text-red-500">Name is required</p>
+                )}
+              </div>
               <div className="mb-6">
                 <p className="text-lg text-primaryColor font-bold">Name</p>
                 <div className="relative flex items-center">
@@ -56,7 +211,7 @@ const Register = () => {
                     {...register("userName", { required: true })}
                     type="text"
                     className="w-full px-4 py-4 bg-gray-200 rounded-lg lg:py-5 sdftext-gray-300 sdfbg-gray-700 "
-                    name="password"
+                    name="userName"
                     placeholder="Enter Name"
                   />
                 </div>
@@ -72,6 +227,7 @@ const Register = () => {
                   className="w-full px-4 py-4 bg-gray-200 rounded-lg sdfbg-gray-700 lg:py-5 sdftext-gray-300 "
                   name="email"
                   placeholder="Enter your email"
+                  autoComplete="email"
                 />
                 {errors.email && (
                   <p className="text-red-500">Email is required</p>
@@ -123,58 +279,6 @@ const Register = () => {
               >
                 Register
               </button>
-              <div className="py-5 text-base text-center text-gray-600 sdftext-gray-400">
-                Or login with
-              </div>
-              <div className="flex justify-center gap-6 cursor-pointer">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  x="0px"
-                  y="0px"
-                  width="50"
-                  height="50"
-                  viewBox="0 0 120 120"
-                >
-                  <path
-                    d="M107.145,55H100H87.569H60v18h27.569c-1.852,5.677-5.408,10.585-10.063,14.118 C72.642,90.809,66.578,93,60,93c-12.574,0-23.278-8.002-27.299-19.191C31.6,70.745,31,67.443,31,64 c0-3.839,0.746-7.505,2.101-10.858C37.399,42.505,47.823,35,60,35c7.365,0,14.083,2.75,19.198,7.273l13.699-13.21 C84.305,20.969,72.736,16,60,16c-18.422,0-34.419,10.377-42.466,25.605C14,48.291,12,55.912,12,64c0,7.882,1.9,15.32,5.267,21.882 C25.223,101.389,41.372,112,60,112c12.382,0,23.668-4.688,32.182-12.386C101.896,90.831,108,78.128,108,64 C108,60.922,107.699,57.917,107.145,55z"
-                    opacity=".35"
-                  ></path>
-                  <path
-                    fill="#44bf00"
-                    d="M17.267,81.882C25.223,97.389,41.372,108,60,108c12.382,0,23.668-4.688,32.182-12.386L77.506,83.118 C72.642,86.809,66.577,89,60,89c-12.574,0-23.278-8.002-27.299-19.191L17.267,81.882z"
-                  ></path>
-                  <path
-                    d="M77.506,83.118c-0.684,0.553-1.685,1.158-2.398,1.638l14.711,12.846 c0.807-0.641,1.6-1.298,2.363-1.988L77.506,83.118z"
-                    opacity=".35"
-                  ></path>
-                  <path
-                    fill="#0075ff"
-                    d="M92.182,95.614C101.896,86.83,108,74.128,108,60c0-3.078-0.301-6.083-0.855-9H100H87.569H60v18 h27.569c-1.852,5.677-5.408,10.585-10.063,14.118L92.182,95.614z"
-                  ></path>
-                  <path
-                    d="M32.701,69.809L17.267,81.882c0.486,0.948,1.004,1.877,1.551,2.787l15.3-11.576 C33.63,72.181,33.05,70.804,32.701,69.809z"
-                    opacity=".35"
-                  ></path>
-                  <path
-                    fill="#ffc400"
-                    d="M17.267,81.882C13.9,75.32,12,67.882,12,60c0-8.088,2-15.709,5.534-22.395l15.568,11.537 C31.746,52.496,31,56.161,31,60c0,3.443,0.6,6.745,1.701,9.809L17.267,81.882z"
-                  ></path>
-                  <path
-                    d="M17.534,37.605c-0.482,0.844-1.169,2.36-1.564,3.251l16.059,11.491 c0.299-1.095,0.653-2.167,1.072-3.205L17.534,37.605z"
-                    opacity=".35"
-                  ></path>
-                  <path
-                    fill="#ff1200"
-                    d="M33.101,49.142C37.399,38.505,47.823,31,60,31c7.365,0,14.083,2.75,19.198,7.273l13.699-13.21 C84.305,16.969,72.736,12,60,12c-18.422,0-34.419,10.377-42.466,25.605L33.101,49.142z"
-                  ></path>
-                </svg>
-                <img
-                  width="50"
-                  height="50"
-                  src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/96/external-github-social-media-tanah-basah-basic-outline-tanah-basah.png"
-                  alt="external-github-social-media-tanah-basah-basic-outline-tanah-basah"
-                />
-              </div>
             </form>
           </div>
         </div>

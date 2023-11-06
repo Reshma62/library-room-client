@@ -1,5 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import Container from "./Container";
+import useAuthContext from "../../Hooks/useAuthContext";
+import UseProfile from "./UseProfile";
 // import { useState } from "react";
 const menuItems = [
   {
@@ -31,6 +33,7 @@ const menuItems = [
 ];
 const Header = () => {
   // const [open, setOpen] = useState(false);
+  const { user } = useAuthContext();
   return (
     <>
       <section className="bg-primaryColor sdfbg-gray-900 font-Cabin">
@@ -80,11 +83,15 @@ const Header = () => {
               </button>
             </div>
             <div className="hidden lg:flex">
-              <Link to={"/login"}>
-                <button className="btn bg-white text-primaryColor font-bold ">
-                  Login
-                </button>
-              </Link>
+              {user ? (
+                <UseProfile />
+              ) : (
+                <Link to={"/login"}>
+                  <button className="btn bg-white text-primaryColor font-bold ">
+                    Login
+                  </button>
+                </Link>
+              )}
             </div>
           </nav>
         </Container>

@@ -1,17 +1,34 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import useAuthContext from "../../Hooks/useAuthContext";
 const Login = () => {
   const [showPass, setshowPass] = useState(false);
+  const { logInUser } = useAuthContext();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const submitData = (data) => {
-    console.log({ data });
+    const { email, password } = data;
+    logInUser(email, password)
+      .then((result) => {
+        toast.success("Login successful. Please wait for redirect");
+        setTimeout(() => {
+          navigate("/");
+        }, 1500);
+      })
+      .catch((err) => {
+        const errorMessage = err.message;
+        console.log(errorMessage);
+        if (errorMessage.includes("auth/invalid-login-credentials)")) {
+          toast.error("Invalid credentials");
+        }
+      });
   };
   return (
     <section className="font-poppins ">
