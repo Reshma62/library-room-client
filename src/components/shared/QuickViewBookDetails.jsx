@@ -59,7 +59,7 @@ const QuickViewBookDetails = ({ data }) => {
           // update the quantity
           refetch();
           axios
-            .patch(`/admin/update-quantity/${_id}?email=${user.email}`)
+            .patch(`/admin/update-quantity/${_id}`)
             .then((result) => {
               console.log(result.data);
               refetch();

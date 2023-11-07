@@ -1,70 +1,83 @@
-import useAllBooksQuery from "../../Hooks/useAllBooksQuery";
 import BookCard from "./BookCard";
 import Filter from "./Filter";
-import Loading from "./Loading";
+
 import Sidebar from "./Sidebar";
+import NotFoundMessage from "./NotFoundMessage";
+import { useEffect, useState } from "react";
+import useAxios from "../../Hooks/useAxios";
+import useAllBooksQuery from "../../Hooks/useAllBooksQuery";
+import { useParams } from "react-router-dom";
+import Loading from "./Loading";
 
 const AllBooksLayout = () => {
-  const { data: allbooks, isLoading, refetch } = useAllBooksQuery();
+  const { category } = useParams();
+  const axios = useAxios();
+  const [count, setCount] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(6);
+  const [currentPage, setCurrentPage] = useState(0);
+  const totalPages = Math.ceil(count / itemsPerPage);
+  const pages = [...Array(totalPages).keys()];
+  useEffect(() => {
+    axios
+      .get("/admin/books-count")
+      .then((result) => {
+        setCount(result?.data?.count);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [axios]);
 
-  if (isLoading) {
-    return <Loading />;
+  const { data: allBooks, isLoading: booksLoading } = useAllBooksQuery(
+    category,
+    currentPage,
+    itemsPerPage
+  );
+
+  if (booksLoading) {
+    <Loading />;
   }
+  const handlePrev = () => {
+    if (currentPage < 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  const handleNext = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
   return (
     <div className="flex flex-wrap mb-24 -mx-3">
       <Sidebar />
       <div className="w-full px-3 lg:w-3/4">
-        <Filter />
+        <Filter setItems={setItemsPerPage} />
         <div className="flex flex-wrap items-center ">
-          {allbooks?.map((item) => (
-            <BookCard key={item._id} book={item} />
-          ))}
+          {allBooks?.length === 0 ? (
+            <NotFoundMessage />
+          ) : (
+            allBooks?.map((item) => <BookCard key={item._id} book={item} />)
+          )}
         </div>
         <div className="flex justify-end mt-6">
-          <nav aria-label="page-navigation">
-            <ul className="flex list-style-none">
-              <li className="page-item disabled ">
-                <a
-                  href="#"
-                  className="relative block pointer-events-none px-3 py-1.5 mr-3 text-base text-gray-700 transition-all duration-300  rounded-md sdftext-gray-400 hover:text-gray-100 hover:bg-blue-600"
-                >
-                  Previous
-                </a>
-              </li>
-              <li className="page-item ">
-                <a
-                  href="#"
-                  className="relative block px-3 py-1.5 mr-3 text-base hover:text-blue-700 transition-all duration-300 hover:bg-blue-200 sdfhover:text-gray-400 sdfhover:bg-gray-700 rounded-md text-gray-100 bg-blue-400"
-                >
-                  1
-                </a>
-              </li>
-              <li className="page-item ">
-                <a
-                  href="#"
-                  className="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 sdftext-gray-400 sdfhover:bg-gray-700 hover:bg-blue-100 rounded-md mr-3  "
-                >
-                  2
-                </a>
-              </li>
-              <li className="page-item ">
-                <a
-                  href="#"
-                  className="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 sdftext-gray-400 sdfhover:bg-gray-700 hover:bg-blue-100 rounded-md mr-3 "
-                >
-                  3
-                </a>
-              </li>
-              <li className="page-item ">
-                <a
-                  href="#"
-                  className="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 sdftext-gray-400 sdfhover:bg-gray-700 hover:bg-blue-100 rounded-md "
-                >
-                  Next
-                </a>
-              </li>
-            </ul>
-          </nav>
+          <div className="flex list-style-none">
+            <button onClick={handlePrev} className="btn btn-ghost ">
+              prev
+            </button>
+            {pages.map((page, index) => (
+              <button
+                onClick={() => setCurrentPage(page)}
+                key={page}
+                className="btn btn-primary"
+              >
+                {index + 1}
+              </button>
+            ))}
+
+            <button onClick={handleNext} className="btn btn-ghost ">
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </div>

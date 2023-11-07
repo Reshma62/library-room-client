@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
 import Heading from "../shared/Heading";
 import useQueryCategory from "../../Hooks/useQueryCategory";
 import Loading from "../shared/Loading";
 import CategoryCard from "./CategoryCard";
 const Category = () => {
   const { data, isLoading, refetch } = useQueryCategory();
+
   if (isLoading) {
     return <Loading />;
   }
@@ -16,7 +16,6 @@ const Category = () => {
           {data.map((item) => (
             <CategoryCard key={item._id} item={item} />
           ))}
-          {/* <CategoryCard /> */}
         </div>
       </div>
     </section>

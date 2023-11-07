@@ -1,4 +1,4 @@
-const Filter = () => {
+const Filter = ({ setItems }) => {
   return (
     <div className="px-3 mb-4">
       <div className="items-center justify-between hidden px-3 py-2 bg-gray-100 md:flex sdfbg-gray-900 ">
@@ -56,6 +56,7 @@ const Filter = () => {
           <div className="pr-3 border-r border-gray-300">
             <select
               name=""
+              value={setItems}
               id=""
               className="block w-40 text-base bg-gray-100 cursor-pointer sdftext-gray-400 sdfbg-gray-900"
             >

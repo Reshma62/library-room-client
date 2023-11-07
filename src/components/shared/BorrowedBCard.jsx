@@ -30,6 +30,15 @@ const BorrowedBCard = ({ book, refetch }) => {
         if (result.data.deletedCount) {
           toast.success("Successfully retrun the book");
           refetch();
+          axios
+            .patch(`/admin/update-quantity/${bookId}?returnBook=true`)
+            .then((result) => {
+              console.log(result.data);
+              refetch();
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
       })
       .catch((err) => {

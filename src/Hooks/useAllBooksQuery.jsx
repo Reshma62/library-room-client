@@ -1,13 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "./useAxios";
 
-const useAllBooksQuery = () => {
+const useAllBooksQuery = (queryParam, totalPages, itemsPerPage) => {
   const axios = useAxios();
+  console.log(totalPages, "totalpage", itemsPerPage, "itemsper[age");
   const { isLoading, isError, data, error, refetch } = useQuery({
-    queryKey: ["allBooks"],
+    queryKey: ["allBooks", queryParam, totalPages, itemsPerPage],
     queryFn: async () => {
-      const response = await axios.get("/admin/getall-books");
-      return response.data;
+      if (queryParam) {
+        const response = await axios.get(
+          `/admin/getall-books?category=${queryParam}&page=${totalPages}&size=${itemsPerPage}`
+        );
+        return response.data;
+      } else {
+        const response = await axios.get(
+          `/admin/getall-books?page=${totalPages}&size=${itemsPerPage}`
+        );
+        return response.data;
+      }
     },
   });
   return { isLoading, isError, data, error, refetch };
