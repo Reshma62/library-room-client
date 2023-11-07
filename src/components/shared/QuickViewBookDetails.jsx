@@ -56,19 +56,17 @@ const QuickViewBookDetails = ({ data }) => {
           refetch();
         } else {
           toast.success("Successfully Borrowed the book");
+          // update the quantity
+          axios
+            .patch(`/admin/update-quantity/${_id}?email=${user.email}`)
+            .then((result) => {
+              console.log(result.data);
+              refetch();
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    // update the quantity field when the book is borrowed
-
-    axios
-      .patch(`/admin/update-quantity/${_id}`)
-      .then((result) => {
-        console.log(result.data);
-        refetch();
       })
       .catch((err) => {
         console.log(err);
@@ -103,7 +101,6 @@ const QuickViewBookDetails = ({ data }) => {
               <p>Your name</p>
               <input
                 type="text"
-                value={user?.displayName}
                 defaultValue={user?.displayName}
                 className="border-2 w-full cursor-not-allowed  border-solid rounded-xl border-primary  outline-0 py-3 px-2.5 mb-2"
                 name="name"
@@ -115,7 +112,6 @@ const QuickViewBookDetails = ({ data }) => {
                 type="email"
                 name="email"
                 defaultValue={user?.email}
-                value={user?.email}
                 className="border-2 w-full  border-solid rounded-xl border-primary  outline-0 py-3 px-2.5 mb-2 cursor-not-allowed"
                 disabled
               />

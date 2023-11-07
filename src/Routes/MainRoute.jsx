@@ -86,7 +86,7 @@ const MainRoute = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `http://localhost:8000/api/v1/admin/get-single-book/${params.id}`
+            `http://localhost:8080/api/v1/admin/get-single-book/${params.id}`
           ),
       },
     ],
