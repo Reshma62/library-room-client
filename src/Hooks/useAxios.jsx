@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:8080/api/v1",
+  baseURL: "https://library-room-server-c20tzajhz-reshma62.vercel.app/api/v1",
   // withCredentials: true,
 });
 
