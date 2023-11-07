@@ -38,7 +38,7 @@ const AllBooksLayout = () => {
     <Loading />;
   }
   const handlePrev = () => {
-    if (currentPage < 0) {
+    if (currentPage > 0) {
       setCurrentPage(currentPage - 1);
     }
   };
@@ -47,11 +47,17 @@ const AllBooksLayout = () => {
       setCurrentPage(currentPage + 1);
     }
   };
+
+  const handleChageItem = (e) => {
+    const value = parseInt(e.target.value);
+    setItemsPerPage(value);
+    setCurrentPage(0);
+  };
   return (
     <div className="flex flex-wrap mb-24 -mx-3">
       <Sidebar />
       <div className="w-full px-3 lg:w-3/4">
-        <Filter setItems={setItemsPerPage} />
+        <Filter setItems={itemsPerPage} handleChageItem={handleChageItem} />
         <div className="flex flex-wrap items-center ">
           {allBooks?.length === 0 ? (
             <NotFoundMessage />
@@ -60,7 +66,7 @@ const AllBooksLayout = () => {
           )}
         </div>
         <div className="flex justify-end mt-6">
-          <div className="flex list-style-none">
+          <div className="flex gap-3">
             <button onClick={handlePrev} className="btn btn-ghost ">
               prev
             </button>
@@ -68,7 +74,11 @@ const AllBooksLayout = () => {
               <button
                 onClick={() => setCurrentPage(page)}
                 key={page}
-                className="btn btn-primary"
+                className={`btn btn-primary ${
+                  page === currentPage
+                    ? "bg-primaryColor"
+                    : "bg-slate-200 text-black"
+                }`}
               >
                 {index + 1}
               </button>

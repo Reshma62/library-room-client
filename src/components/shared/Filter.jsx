@@ -1,4 +1,4 @@
-const Filter = ({ setItems }) => {
+const Filter = ({ handleChageItem, setItems }) => {
   return (
     <div className="px-3 mb-4">
       <div className="items-center justify-between hidden px-3 py-2 bg-gray-100 md:flex sdfbg-gray-900 ">
@@ -56,7 +56,6 @@ const Filter = ({ setItems }) => {
           <div className="pr-3 border-r border-gray-300">
             <select
               name=""
-              value={setItems}
               id=""
               className="block w-40 text-base bg-gray-100 cursor-pointer sdftext-gray-400 sdfbg-gray-900"
             >
@@ -69,13 +68,14 @@ const Filter = ({ setItems }) => {
             <p className="text-xs text-gray-400">Show</p>
             <div className="px-2 py-2 text-xs text-gray-500 ">
               <select
-                name=""
-                id=""
+                value={setItems}
+                onChange={handleChageItem}
                 className="block text-base bg-gray-100 cursor-pointer w-11 sdftext-gray-400 sdfbg-gray-900"
               >
-                <option value="">15</option>
-                <option value="">17</option>
-                <option value="">19</option>
+                <option value="6">6</option>
+                <option value="15">15</option>
+                <option value="17">17</option>
+                <option value="19">19</option>
               </select>
             </div>
           </div>
