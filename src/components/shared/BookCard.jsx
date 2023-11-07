@@ -2,16 +2,8 @@ import Rating from "react-rating";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 const BookCard = ({ book }) => {
-  const {
-    _id,
-    bookName,
-    authorName,
-    rating,
-    category,
-    description,
-    quantity,
-    bookPhoto,
-  } = book || {};
+  const { _id, bookName, authorName, rating, category, quantity, bookPhoto } =
+    book || {};
   return (
     <div className="w-full px-3 mb-6 sm:w-1/2 md:w-1/3">
       <div className="border border-gray-300 dark:border-gray-700 rounded-2xl">

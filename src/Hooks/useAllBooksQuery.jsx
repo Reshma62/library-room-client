@@ -6,7 +6,7 @@ const useAllBooksQuery = () => {
   const { isLoading, isError, data, error, refetch } = useQuery({
     queryKey: ["allBooks"],
     queryFn: async () => {
-      const response = await axios.get("/admin/getall-product");
+      const response = await axios.get("/admin/getall-books");
       return response.data;
     },
   });

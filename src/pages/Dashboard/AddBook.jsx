@@ -31,12 +31,9 @@ const AddBook = () => {
       description,
       quantity,
     };
+    console.log(booksInfo, 34);
     axios
-      .post("/admin/create-product", booksInfo, {
-        headers: {
-          "Content-Type": "multipart/form-data", // Important for file uploads
-        },
-      })
+      .post("/admin/create-book", booksInfo)
       .then((res) => {
         if (res.data.insertedId) {
           toast.success("Book added successfully");
