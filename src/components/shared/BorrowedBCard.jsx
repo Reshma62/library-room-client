@@ -1,16 +1,47 @@
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import Rating from "react-rating";
 import { Link } from "react-router-dom";
+import useAxios from "../../Hooks/useAxios";
+import toast from "react-hot-toast";
 
-const BorrowedBCard = () => {
+const BorrowedBCard = ({ book, refetch }) => {
+  const axios = useAxios();
+  const {
+    _id,
+    bookId,
+    bookName,
+    authorName,
+    rating,
+    category,
+    bookPhoto,
+    borrowDate,
+    returnDate,
+    userName,
+    userEmail,
+    description,
+  } = book || {};
+
+  const handleReturn = () => {
+    console.log(_id);
+    axios
+      .delete(`/user/return-book/${_id}`)
+      .then((result) => {
+        console.log(result.data);
+        if (result.data.deletedCount) {
+          toast.success("Successfully retrun the book");
+          refetch();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div>
       <div className="relative w-full h-56">
-        <img
-          src="https://i.postimg.cc/7hBDr1vC/pexels-rodnae-productions-7005064.jpg"
-          alt=""
-          className="object-cover w-full h-full "
-        />
+        <img src={bookPhoto} alt="" className="object-cover w-full h-full " />
         <span className="absolute top-0 left-0 px-2 py-1 mt-2 ml-2 text-xs text-white bg-blue-700">
-          Category
+          {category}
         </span>
       </div>
       <div className="p-4 bg-white sdfbg-gray-700 border border-solid border-primaryColor">
@@ -18,7 +49,7 @@ const BorrowedBCard = () => {
           <div>
             <a href="">
               <h2 className="text-xl font-semibold sdftext-gray-300">
-                Book Name
+                {bookName}
               </h2>
             </a>
           </div>
@@ -39,21 +70,26 @@ const BorrowedBCard = () => {
                 </svg>
               </a>
               <span className="text-sm font-medium text-gray-700 sdftext-gray-400">
-                3/23/2022
+                {borrowDate}
               </span>
             </div>
           </div>
         </div>
-        <div className="flex items-center mb-4">
+        <div className="flex items-center mb-4 justify-between">
           <span className="text-sm text-gray-600 sdftext-gray-400">
-            Author name
+            {authorName}
           </span>
+          <Rating
+            initialRating={rating}
+            fullSymbol={<AiFillStar />}
+            emptySymbol={<AiOutlineStar />}
+            readonly
+          />
         </div>
         <h2 className="mb-4 text-lg font-medium text-gray-700 sdftext-gray-400">
-          We will take you different places of nepal and will translate japanese
-          to english...{" "}
+          {description.substring(0, 130)}
           <Link
-            to={"/read-books"}
+            to={`/read-books/${_id}`}
             className="text-primaryColor font-bold underline"
           >
             Read more
@@ -77,16 +113,16 @@ const BorrowedBCard = () => {
                 </svg>
               </a>
               <span className="text-sm font-medium text-gray-700 sdftext-gray-400">
-                3/23/2022
+                {returnDate}
               </span>
             </div>
           </div>
-          <a
-            href="#"
+          <button
+            onClick={handleReturn}
             className="px-3 py-2 text-xs text-gray-100 bg-blue-700 rounded hover:bg-blue-600 hover:text-gray-100"
           >
             Return
-          </a>
+          </button>
         </div>
       </div>
     </div>

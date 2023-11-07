@@ -57,6 +57,7 @@ const QuickViewBookDetails = ({ data }) => {
         } else {
           toast.success("Successfully Borrowed the book");
           // update the quantity
+          refetch();
           axios
             .patch(`/admin/update-quantity/${_id}?email=${user.email}`)
             .then((result) => {
