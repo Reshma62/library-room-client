@@ -12,7 +12,7 @@ const CategoryCard = ({ item }) => {
     <div className="relative bg-white rounded-2xl sdfbg-gray-700">
       <div className="w-full h-56 px-4 pt-4">
         <img
-          src={`http://localhost:8080${CategoryPhoto}`}
+          src={`https://library-room-server.vercel.app${CategoryPhoto}`}
           alt=""
           className="object-cover w-full h-full rounded-lg "
         />

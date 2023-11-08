@@ -24,15 +24,13 @@ to a form page where the form will have the following fields:
 
 Done filter , pagination,
 
-
-
 Doen: -Clicking on the “Read” button will take the user to a different page where the user can read
 some content of that book.
 
 Done: -10. There will also be a Filter button. By clicking this button, only available books (Quantity > 0)
 will be shown.
 
-TODO: 1. Use JWT token for doing the CRUD operations in the "All Books" and `Add Book` routes.
+Done: 1. Use JWT token for doing the CRUD operations in the "All Books" and `Add Book` routes.
 
 TODO: . Make the website responsive. Make sure the site looks different on desktop and mobile
 responsive. Tablet responsive is optional

@@ -1,1 +1,1 @@
-export default "http://localhost:8080/api/v1";
+export default "https://library-room-server.vercel.app/api/v1";

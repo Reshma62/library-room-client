@@ -83,7 +83,7 @@ const AllCategoryLists = ({ data, isLoading, refetch }) => {
                     </td>
                     <td className="px-6 py-5 font-medium ">
                       <img
-                        src={`http://localhost:8080${item.CategoryPhoto}`}
+                        src={`https://library-room-server.vercel.app${item.CategoryPhoto}`}
                         alt="category img"
                         className="w-12 h-12 border border-solid border-primaryColor"
                       />

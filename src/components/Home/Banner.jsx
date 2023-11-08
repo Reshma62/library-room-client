@@ -35,10 +35,10 @@ const Banner = () => {
                     <span>Skills</span>
                   </h1>
                   <p className="mb-6 leading-8 text-gray-500 dark:text-slate-200 sdftext-gray-400">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.sit amet, consectetur adipiscing elit, sed do Ut enim
-                    ad minim veniam
+                    A library is a collection of books, and possibly other
+                    materials and media, that is accessible for use by its
+                    members and members of allied institutions. Libraries
+                    provide physical
                   </p>
                   <a
                     className="inline-block w-full px-6 py-4 mb-2 text-lg font-medium leading-6 text-center text-white transition duration-200 bg-blue-600 rounded shadow sdfbg-blue-500 sdfhover:bg-blue-700 md:w-auto md:mb-0 md:mr-4 hover:bg-blue-700"
@@ -86,18 +86,20 @@ const Banner = () => {
               <div className="w-full px-4 lg:w-2/5">
                 <div className=" lg:max-w-xl">
                   <h1 className="mb-6 text-4xl text-gray-900 font-bold sdftext-gray-300 lg:text-6xl">
-                    <span>Keep learning and </span>
+                    <span>Just borrowe and </span>
                     <span className="text-blue-600 sdftext-blue-400">
-                      Develop
+                      return
                     </span>
                     <br />
-                    <span>Skills</span>
+                    <span>simple</span>
                   </h1>
                   <p className="mb-6 leading-8 text-gray-500 sdftext-gray-400">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.sit amet, consectetur adipiscing elit, sed do Ut enim
-                    ad minim veniam
+                    A library is a collection of books, and possibly other
+                    materials and media, that is accessible for use by its
+                    members and members of allied institutions. Libraries
+                    provide physical (hard copies) or digital (soft copies)
+                    materials, and may be a physical location, a virtual space,
+                    or both.
                   </p>
                   <a
                     className="inline-block w-full px-6 py-4 mb-2 text-lg font-medium leading-6 text-center text-white transition duration-200 bg-blue-600 rounded shadow sdfbg-blue-500 sdfhover:bg-blue-700 md:w-auto md:mb-0 md:mr-4 hover:bg-blue-700"
