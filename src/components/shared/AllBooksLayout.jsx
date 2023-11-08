@@ -8,34 +8,41 @@ import useAxios from "../../Hooks/useAxios";
 import useAllBooksQuery from "../../Hooks/useAllBooksQuery";
 import { useParams } from "react-router-dom";
 import Loading from "./Loading";
+import baseUrl from "../../utils/baseUrl";
+import axios from "axios";
 
 const AllBooksLayout = () => {
   const { category } = useParams();
-  const axios = useAxios();
+  // const axios = useAxios();
   const [count, setCount] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(6);
   const [currentPage, setCurrentPage] = useState(0);
   const totalPages = Math.ceil(count / itemsPerPage);
   const pages = [...Array(totalPages).keys()];
+
   useEffect(() => {
     axios
-      .get("/admin/books-count")
+      .get(`${baseUrl}/admin/books-count`)
       .then((result) => {
         setCount(result?.data?.count);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [axios]);
+  }, []);
 
   const { data: allBooks, isLoading: booksLoading } = useAllBooksQuery(
     category,
     currentPage,
     itemsPerPage
   );
+  const [showStock, setShowStock] = useState(false);
+  const filteredProducts = showStock
+    ? allBooks.filter((product) => product.quantity > 0)
+    : allBooks;
 
   if (booksLoading) {
-    <Loading />;
+    return <Loading />;
   }
   const handlePrev = () => {
     if (currentPage > 0) {
@@ -53,16 +60,22 @@ const AllBooksLayout = () => {
     setItemsPerPage(value);
     setCurrentPage(0);
   };
+
+  const handleStock = () => {
+    setShowStock(!showStock);
+  };
   return (
     <div className="flex flex-wrap mb-24 -mx-3">
-      <Sidebar />
+      <Sidebar handleStock={handleStock} />
       <div className="w-full px-3 lg:w-3/4">
         <Filter setItems={itemsPerPage} handleChageItem={handleChageItem} />
         <div className="flex flex-wrap items-center ">
-          {allBooks?.length === 0 ? (
+          {filteredProducts?.length === 0 ? (
             <NotFoundMessage />
           ) : (
-            allBooks?.map((item) => <BookCard key={item._id} book={item} />)
+            filteredProducts?.map((item) => (
+              <BookCard key={item._id} book={item} />
+            ))
           )}
         </div>
         <div className="flex justify-end mt-6">

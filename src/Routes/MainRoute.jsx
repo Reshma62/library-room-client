@@ -17,6 +17,7 @@ import AboutPage from "../pages/AboutPage/AboutPage";
 import ReadBook from "../pages/ReadBook/ReadBook";
 import Register from "../pages/Register/Register";
 import PrivateRoute from "./PrivateRoute";
+import baseUrl from "../utils/baseUrl";
 
 const MainRoute = createBrowserRouter([
   {
@@ -62,12 +63,13 @@ const MainRoute = createBrowserRouter([
         ),
       },
       {
-        path: "read-books",
+        path: "read-books/:id",
         element: (
           <PrivateRoute>
             <ReadBook />
           </PrivateRoute>
         ),
+        loader: ({ params }) => fetch(`${baseUrl}/user/read-book/${params.id}`),
       },
       {
         path: "books/:category",
@@ -85,9 +87,7 @@ const MainRoute = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(
-            `http://localhost:8080/api/v1/admin/get-single-book/${params.id}`
-          ),
+          fetch(`${baseUrl}/admin/get-single-book/${params.id}`),
       },
     ],
   },
@@ -117,12 +117,14 @@ const MainRoute = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/update-book",
+        path: "/dashboard/update-book/:id",
         element: (
           <PrivateRoute>
             <UpdateBook />
           </PrivateRoute>
         ),
+        loader: ({ params }) =>
+          fetch(`${baseUrl}/admin/get-single-book/${params.id}`),
       },
       {
         path: "/dashboard/all-book-list",

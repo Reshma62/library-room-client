@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { AiOutlineArrowLeft, AiFillDashboard } from "react-icons/ai";
 import { BiBookOpen, BiSolidBookAdd, BiSolidCategoryAlt } from "react-icons/bi";
+import useAuthContext from "../../Hooks/useAuthContext";
+import toast from "react-hot-toast";
 const dahshoardMenu = [
   {
     id: "/dashboard",
@@ -16,10 +18,10 @@ const dahshoardMenu = [
     href: "/dashboard/add-book",
   },
   {
-    id: "/dashboard/update-book",
+    id: "/dashboard/update-book/id",
     title: "Update Book",
     icon: <BiSolidBookAdd />,
-    href: "/dashboard/update-book",
+    href: "/dashboard/update-book/id",
   },
   {
     id: "/dashboard/category",
@@ -29,12 +31,21 @@ const dahshoardMenu = [
   },
 ];
 const DashboardNavbar = ({ outLet }) => {
+  const { user, logOUtUser } = useAuthContext();
   const location = useLocation();
   const pathName = location.pathname;
   const [openSidebar, setOpenSidebar] = useState(true);
   const [openDropdown, setOpenDropdown] = useState(false);
   const [activeMenuId, setActiveMenuId] = useState(pathName);
-
+  const handleLogout = () => {
+    logOUtUser()
+      .then((result) => {
+        toast.success("Logout Success");
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
   return (
     <>
       <div className="bg-gray-100 xl:h-screen sdfbg-gray-800">
@@ -68,7 +79,7 @@ const DashboardNavbar = ({ outLet }) => {
                 </div>
                 <div className="relative w-32 h-32 mx-auto -mt-16 overflow-hidden border-4 border-white rounded-full">
                   <img
-                    src="https://i.postimg.cc/RhQYkKYk/pexels-italo-melo-2379005.jpg"
+                    src={user?.photoURL}
                     alt=""
                     className="object-cover object-top w-full h-32 "
                   />
@@ -76,10 +87,10 @@ const DashboardNavbar = ({ outLet }) => {
                 <div className="flex justify-center ">
                   <div>
                     <h2 className="text-xl font-semibold sdftext-gray-300 ">
-                      John Doe
+                      {user?.displayName}
                     </h2>
                     <span className="text-sm font-medium text-gray-600">
-                      john@gmail.com
+                      {user?.email}
                     </span>
                   </div>
                 </div>
@@ -209,7 +220,7 @@ const DashboardNavbar = ({ outLet }) => {
                         <button className="flex items-center">
                           <div className="hidden mr-3 text-right md:block">
                             <p className="text-sm font-bold text-black sdftext-gray-400">
-                              John Doe
+                              {user?.displayName}
                             </p>
                           </div>
                           <div
@@ -217,7 +228,7 @@ const DashboardNavbar = ({ outLet }) => {
                             onClick={() => setOpenDropdown(!openDropdown)}
                           >
                             <img
-                              src="https://i.postimg.cc/pr2Q6n1w/pexels-italo-melo-2379005.jpg"
+                              src={user?.photoURL}
                               className="object-cover object-right w-10 h-10 rounded-full"
                               alt="person"
                             />
@@ -267,8 +278,8 @@ const DashboardNavbar = ({ outLet }) => {
                             </svg>
                             Account
                           </a>
-                          <a
-                            href="#"
+                          <button
+                            onClick={handleLogout}
                             className="flex px-4 py-2 text-sm text-gray-700 sdfhover:bg-gray-800 sdftext-gray-400 hover:bg-gray-100"
                           >
                             <svg
@@ -288,7 +299,7 @@ const DashboardNavbar = ({ outLet }) => {
                               <line x1="21" y1="12" x2="9" y2="12"></line>
                             </svg>
                             Logout
-                          </a>
+                          </button>
                         </div>
                       </div>
                     </div>

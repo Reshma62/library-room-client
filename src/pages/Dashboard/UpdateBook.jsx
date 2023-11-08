@@ -1,29 +1,72 @@
 import { useForm } from "react-hook-form";
 import Heading from "../../components/shared/Heading";
 import { useState } from "react";
+import axios from "axios";
+import baseUrl from "../../utils/baseUrl";
+import toast from "react-hot-toast";
+import useQueryCategory from "../../Hooks/useQueryCategory";
+import useAllBooksQuery from "../../Hooks/useAllBooksQuery";
+import Loading from "../../components/shared/Loading";
+import { useLoaderData } from "react-router-dom";
 
 const UpdateBook = () => {
-  const [imgUrl, setImgUrl] = useState(null);
+  const { isLoading, data: categorys } = useQueryCategory();
+  const { refetch } = useAllBooksQuery();
   const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+    _id,
+    bookName,
+    authorName,
+    rating,
+    category,
+    description,
+    quantity,
+    bookPhoto,
+  } = useLoaderData();
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    console.log(file);
-    setImgUrl(URL.createObjectURL(file));
-  };
-  const submitData = (data) => {
-    console.log(data);
-    const selectedFile = data.bookPhoto[0];
-    console.log({ selectedFile });
+  console.log(_id);
+  if (isLoading) {
+    return <Loading />;
+  }
+  const submitData = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const bookName = form.bookName.value;
+    const authorName = form.authorName.value;
+    const quantity = form.quantity.value;
+    const description = form.description.value;
+    const rating = form.rating.value;
+    const category = form.category.value;
+    const bookPhoto = form.bookPhoto.value;
+
+    const booksInfo = {
+      bookName,
+      authorName,
+      rating,
+      category,
+      bookPhoto,
+      description,
+      quantity,
+    };
+    console.log(booksInfo, 34);
+    axios
+      .put(`${baseUrl}/admin/update-book/${_id}`, booksInfo)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.modifiedCount) {
+          toast.success("Book updated successfully");
+          form.reset();
+          refetch();
+        }
+      })
+      .catch((err) => {
+        toast.error("Book added failed");
+        console.log(err);
+      });
   };
   return (
     <div className="pt-20">
       <Heading title={"Update Book"} span={"Update"} headings={"Book"} />
-      <form onSubmit={handleSubmit(submitData)} className="font-Cabin ">
+      <form onSubmit={submitData} className="font-Cabin ">
         <div className="flex gap-8">
           <div>
             <div className="w-[500px] mb-3">
@@ -31,10 +74,10 @@ const UpdateBook = () => {
                 Book Name
               </label>
               <input
-                {...register("bookName")}
+                defaultValue={bookName}
+                name="bookName"
                 className="border border-solid border-primaryColor w-full px-5 py-2 rounded-lg"
                 placeholder="Enter the Book Name"
-                defaultValue={"Book Name"}
               />
             </div>
             <div className="w-[500px] mb-3">
@@ -42,7 +85,8 @@ const UpdateBook = () => {
                 Author Name
               </label>
               <input
-                {...register("authorName")}
+                defaultValue={authorName}
+                name="authorName"
                 className="border border-solid border-primaryColor w-full px-5 py-2 rounded-lg"
                 placeholder="Enter the Author Name"
               />
@@ -52,22 +96,19 @@ const UpdateBook = () => {
                 Quantity
               </label>
               <input
-                {...register("quantity", { pattern: /\d+/ })}
+                defaultValue={quantity}
+                name="quantity"
                 className="border border-solid border-primaryColor w-full px-5 py-2 rounded-lg"
                 placeholder="Enter the Book Quantity"
               />
-              {errors.age && (
-                <p className="text-red-500">
-                  Please enter number for quantity.
-                </p>
-              )}
             </div>
             <div className="w-[500px] mb-3">
               <label className="font-bold text-lg inline-block text-primaryColor pb-2">
                 Description
               </label>
               <input
-                {...register("description")}
+                defaultValue={description}
+                name="description"
                 className="border border-solid border-primaryColor w-full px-5 py-2 rounded-lg"
                 placeholder="Enter Book Description"
               />
@@ -79,7 +120,8 @@ const UpdateBook = () => {
                 Rating
               </label>
               <input
-                {...register("rating")}
+                defaultValue={rating}
+                name="rating"
                 className="border border-solid border-primaryColor w-full px-5 py-2 rounded-lg"
                 placeholder="Enter Book Rating"
               />
@@ -89,43 +131,31 @@ const UpdateBook = () => {
                 Select Category
               </label>
               <br />
+
               <select
-                name=""
+                name="category"
                 id=""
+                defaultValue={category}
                 className="border border-solid border-primaryColor w-1/2 px-5 py-2 rounded-lg"
-                {...register("category")}
               >
-                <option value="cate1">cate1</option>
-                <option value="cate2">cate2</option>
-                <option value="cate3">cate3</option>
+                {categorys.map((cat) => (
+                  <option key={cat._id} value={cat.name}>
+                    {cat.name}
+                  </option>
+                ))}
               </select>
-              {/* <input
-                
-                className="border border-solid border-primaryColor w-full px-5 py-2 rounded-lg"
-                placeholder="Enter Book Rating"
-              /> */}
             </div>
             <div className="w-[500px] mb-3">
-              <div className="py-2 shrink-0">
-                <img
-                  className="object-cover w-32 h-32 rounded-lg border border-solid border-primaryColor"
-                  src={`${
-                    imgUrl
-                      ? imgUrl
-                      : "https://i.postimg.cc/bNyr5cJq/pexels-anastasia-shuraeva-5704720.jpg"
-                  }`}
-                  alt="Current profile photo"
-                />
-              </div>
-              <label className="block pt-2">
-                <span className="sr-only ">Choose Book photo</span>
-                <input
-                  type="file"
-                  className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold dark:file:bg-gray-600 dark:file:text-gray-200 dark:hover:file:bg-gray-700 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 "
-                  {...register("bookPhoto")}
-                  onChange={handleFileChange}
-                />
+              <label className="font-bold text-lg inline-block text-primaryColor pb-2">
+                Book Photo url
               </label>
+              <br />
+              <input
+                defaultValue={bookPhoto}
+                name="bookPhoto"
+                className="border border-solid border-primaryColor w-full px-5 py-2 rounded-lg"
+                placeholder="Enter Book photo url"
+              />
             </div>
           </div>
         </div>
@@ -134,7 +164,7 @@ const UpdateBook = () => {
             className="btn bg-primaryColor text-white hover:text-primaryColor hover:bg-transparent border-solid border-transparent border hover:border-primaryColor mt-9 text-center"
             type="submit"
           >
-            Update Book
+            update Book
           </button>
         </div>
       </form>

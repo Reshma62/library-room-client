@@ -8,7 +8,7 @@ import { Mousewheel, Pagination } from "swiper/modules";
 
 const Banner = () => {
   return (
-    <section className="relative overflow-hidden bg-gray-100 py-20 ">
+    <section className="relative overflow-hidden bg-gray-100 dark:bg-gray-700 py-20 ">
       <Swiper
         direction={"vertical"}
         slidesPerView={1}
@@ -26,7 +26,7 @@ const Banner = () => {
             <div className="flex flex-wrap items-center -mx-4 h-full justify-between">
               <div className="w-full px-4 lg:w-2/5">
                 <div className=" lg:max-w-xl">
-                  <h1 className="mb-6 text-4xl text-gray-900 font-bold sdftext-gray-300 lg:text-6xl">
+                  <h1 className="mb-6 text-4xl text-gray-900 dark:text-slate-200 font-bold sdftext-gray-300 lg:text-6xl">
                     <span>Keep learning and </span>
                     <span className="text-blue-600 sdftext-blue-400">
                       Develop
@@ -34,7 +34,7 @@ const Banner = () => {
                     <br />
                     <span>Skills</span>
                   </h1>
-                  <p className="mb-6 leading-8 text-gray-500 sdftext-gray-400">
+                  <p className="mb-6 leading-8 text-gray-500 dark:text-slate-200 sdftext-gray-400">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                     do eiusmod tempor incididunt ut labore et dolore magna
                     aliqua.sit amet, consectetur adipiscing elit, sed do Ut enim

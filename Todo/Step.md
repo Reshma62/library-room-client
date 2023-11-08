@@ -2,7 +2,7 @@
 
 FIXME: when enable dark mode chage the sdf to dark:
 
-FIXME: when reload private route should be loadding add
+Done: when reload private route should be loadding add
 
 TODO: make menu responsive
 
@@ -14,7 +14,7 @@ TODO: add category need to edit functionality
 
 DONE: show the category based product
 
-TODO: 11. Each book will have an Update Button. Clicking on the `Update button` will redirect the user
+Done: 11. Each book will have an Update Button. Clicking on the `Update button` will redirect the user
 to a form page where the form will have the following fields:
 
 - Image
@@ -24,14 +24,16 @@ to a form page where the form will have the following fields:
 - Rating
 - Submit button
 
-TODO: filter , pagination, sorting
+Done filter , pagination,
+
+<!-- TODO: sorting -->
 
 TODO: set user based role if admin show the dashboard
 
-TODO: -Clicking on the “Read” button will take the user to a different page where the user can read
+Doen: -Clicking on the “Read” button will take the user to a different page where the user can read
 some content of that book.
 
-TODO: -10. There will also be a Filter button. By clicking this button, only available books (Quantity > 0)
+Done: -10. There will also be a Filter button. By clicking this button, only available books (Quantity > 0)
 will be shown.
 
 TODO: 1. Use JWT token for doing the CRUD operations in the "All Books" and `Add Book` routes.

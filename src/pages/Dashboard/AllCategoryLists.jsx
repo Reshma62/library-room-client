@@ -3,15 +3,17 @@ import useAxios from "../../Hooks/useAxios";
 
 import Loading from "../../components/shared/Loading";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
+import baseUrl from "../../utils/baseUrl";
+import axios from "axios";
 const AllCategoryLists = ({ data, isLoading, refetch }) => {
-  const axios = useAxios();
+  // const axios = useAxios();
   if (isLoading) {
     return <Loading />;
   }
   const handleDelete = async (id) => {
     console.log(id);
     axios
-      .delete(`/admin/delete-category/${id}`)
+      .delete(`${baseUrl}/admin/delete-category/${id}`)
       .then((result) => {
         console.log(result);
         if (result.data?.success) {

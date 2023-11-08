@@ -1,6 +1,6 @@
 const ClientCard = () => {
   return (
-    <div className="mb-8 text-center bg-white rounded shadow dark:bg-gray-700 py-10">
+    <div className="mb-8 text-center bg-primaryColor rounded shadow dark:bg-slate-200 py-10">
       <div className="relative z-20 -mt-14 ">
         <div className="p-8">
           <span className="inline-block p-3 mb-3 text-xs text-white bg-blue-500 rounded-full">

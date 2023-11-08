@@ -2,7 +2,9 @@ import { Link, NavLink } from "react-router-dom";
 import Container from "./Container";
 import useAuthContext from "../../Hooks/useAuthContext";
 import UseProfile from "./UseProfile";
-// import { useState } from "react";
+import { useEffect, useState } from "react";
+import { FaBarsStaggered } from "react-icons/fa6";
+import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 const menuItems = [
   {
     id: 1,
@@ -32,16 +34,48 @@ const menuItems = [
   },
 ];
 const Header = () => {
-  // const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    // Check the theme in localStorage when the component mounts
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme) {
+      // Apply the saved theme
+      if (savedTheme === "dark") {
+        setIsDark(true);
+        document.body.classList.add("dark");
+      } else {
+        setIsDark(false);
+        document.body.classList.remove("dark");
+      }
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    // Toggle the theme and save it in localStorage
+    setIsDark(!isDark);
+    const newTheme = isDark ? "light" : "dark";
+    localStorage.setItem("theme", newTheme);
+
+    // Apply the theme to the body element
+    if (newTheme === "dark") {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  };
+
   const { user } = useAuthContext();
   return (
     <>
-      <section className="bg-primaryColor sdfbg-gray-900 font-Cabin">
+      <section className={`bg-primaryColor dark:bg-gray-900 font-Cabin`}>
         <Container>
           <nav className="flex items-center justify-between py-4">
             <a
               href=""
-              className="text-2xl font-black leading-none font-Montserrat text-white sdftext-gray-300"
+              className="text-2xl font-black leading-none font-Montserrat text-white dark:text-gray-300"
             >
               Library<span className="italic">Room</span>
             </a>
@@ -56,7 +90,7 @@ const Header = () => {
                         isActive
                           ? "bg-white text-primaryColor"
                           : "bg-transparent text-white"
-                      }  sdftext-gray-300 text-xl leading-8 inline-block py-2.5 px-4 hover:text-blue-200 sdfhover:text-blue-300 rounded-md capitalize font-medium`
+                      }  dark:text-gray-300 text-xl leading-8 inline-block py-2.5 px-4 hover:text-blue-200 dark:hover:text-blue-300 rounded-md capitalize font-medium`
                     }
                   >
                     {menuItem.name}
@@ -66,7 +100,7 @@ const Header = () => {
             </ul>
 
             <div className="lg:hidden">
-              <button className="flex items-center px-3 py-2 text-blue-200 border border-blue-200 rounded sdftext-gray-400 hover:text-blue-300 hover:border-blue-300 lg:hidden">
+              <button className="flex items-center px-3 py-2 text-blue-200 border border-blue-200 rounded dark:text-gray-400 hover:text-blue-300 hover:border-blue-300 lg:hidden">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -91,6 +125,20 @@ const Header = () => {
                     Login
                   </button>
                 </Link>
+              )}
+            </div>
+            {/* Dark mode button */}
+            <div className="flex text-3xl cursor-pointer">
+              {isDark ? (
+                <BsFillSunFill
+                  className="text-white text-lg"
+                  onClick={toggleTheme}
+                />
+              ) : (
+                <BsFillMoonFill
+                  className="text-white text-lg"
+                  onClick={toggleTheme}
+                />
               )}
             </div>
           </nav>

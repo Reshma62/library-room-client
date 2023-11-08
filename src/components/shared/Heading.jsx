@@ -4,7 +4,7 @@ const Heading = ({ title, headings, span }) => {
       <div className="absolute text-center hidden md:block -top-16  text-[120px] text-gray-400 font-bold opacity-10 uppercase">
         {title}
       </div>
-      <h1 className="text-5xl font-bold sdftext-white">
+      <h1 className="text-5xl font-bold dark:text-white">
         {span} <span className="text-blue-500"> {headings}</span>
       </h1>
       <div className="flex w-24 mt-1 mb-10 overflow-hidden rounded">

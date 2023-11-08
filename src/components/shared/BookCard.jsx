@@ -47,9 +47,11 @@ const BookCard = ({ book }) => {
                 details
               </button>
             </Link>
-            <button className="capitalize border-primaryColor border-2 border-solid text-primaryColor px-3 py-2 rounded-lg">
-              update
-            </button>
+            <Link to={`/dashboard/update-book/${_id}`}>
+              <button className="capitalize border-primaryColor border-2 border-solid text-primaryColor px-3 py-2 rounded-lg">
+                update
+              </button>
+            </Link>
           </div>
         </div>
       </div>

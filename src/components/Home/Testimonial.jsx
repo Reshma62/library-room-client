@@ -11,7 +11,7 @@ import Container from "../shared/Container";
 import ClientCard from "./ClientCard";
 const Testimonial = () => {
   return (
-    <section className="py-20">
+    <section className="py-20 bg-white dark:bg-gray-700">
       <Container>
         <Swiper
           effect={"coverflow"}

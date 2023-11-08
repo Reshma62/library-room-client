@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
   theme: {
     extend: {
       fontFamily: {
@@ -8,7 +9,7 @@ export default {
         Cabin: ["Cabin, sans-serif"],
       },
       colors: {
-        primaryColor : "#3b1380"
+        primaryColor: "#3b1380",
       },
     },
   },

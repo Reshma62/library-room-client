@@ -1,10 +1,14 @@
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import Rating from "react-rating";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import QuickView from "../../components/shared/QuickView";
+import useGetSingleBooks from "../../Hooks/useGetSingleBooks";
 
 const DetailsPage = () => {
   const data = useLoaderData();
+
+  // const { data: singleBook } = useGetSingleBooks(id);
+
   const {
     _id,
     bookName,
