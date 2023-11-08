@@ -150,7 +150,7 @@ const Register = () => {
           </span>
           <div className="">
             <form className="p-0 m-0" onSubmit={handleSubmit(submitData)}>
-              <div className="mb-6 overflow-hidden">
+              {/*  <div className="mb-6 overflow-hidden">
                 {openModal && (
                   <UploadImg
                     onClick={toggleModal}
@@ -217,7 +217,7 @@ const Register = () => {
                 {errors.userName && (
                   <p className="text-red-500">Name is required</p>
                 )}
-              </div>
+              </div> */}
               <div className="mb-6">
                 <p className="text-lg text-primaryColor font-bold">Name</p>
                 <div className="relative flex items-center">

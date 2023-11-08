@@ -22,7 +22,7 @@ const Login = () => {
       .then((result) => {
         toast.success("Login successful. Please wait for redirect");
         setTimeout(() => {
-          // navigate(location?.state ? location.state : "/");
+          navigate(location?.state ? location.state : "/");
         }, 1500);
       })
       .catch((err) => {

@@ -57,9 +57,7 @@ const AuthContextProviders = ({ children }) => {
 
       if (currentUser) {
         axios
-          .post(`/user/access-token`, loggedInUser, {
-            withCredentials: true,
-          })
+          .post(`/user/access-token`, loggedInUser)
           .then((result) => {
             console.log(result.data);
           })
@@ -68,9 +66,7 @@ const AuthContextProviders = ({ children }) => {
           });
       } else {
         axios
-          .post(`/user/delete-token`, loggedInUser, {
-            withCredentials: true,
-          })
+          .post(`/user/delete-token`, loggedInUser)
           .then((result) => {
             console.log(result.data);
           })
@@ -83,7 +79,7 @@ const AuthContextProviders = ({ children }) => {
     return () => {
       unSubscribe();
     };
-  }, []);
+  }, [axios, user?.email]);
 
   const authInfo = {
     user,
