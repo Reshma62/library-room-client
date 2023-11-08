@@ -17,12 +17,7 @@ const dahshoardMenu = [
     icon: <BiBookOpen />,
     href: "/dashboard/add-book",
   },
-  {
-    id: "/dashboard/update-book/id",
-    title: "Update Book",
-    icon: <BiSolidBookAdd />,
-    href: "/dashboard/update-book/id",
-  },
+
   {
     id: "/dashboard/category",
     title: "Category",

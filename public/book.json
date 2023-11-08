@@ -1,227 +1,47 @@
 [
   {
-    "bookName": "Einstein: His Life and Universe",
-    "authorName": "Walter Isaacson",
-    "rating": "4.2",
-    "category": "Nobel",
-    "description": "A biography of the renowned physicist Albert Einstein. This book provides a fascinating insight into the life and achievements of one of the greatest scientific minds in history. Discover Einstein's groundbreaking theories and his impact on the world of physics.",
-    "quantity": "15",
-    "bookPhoto": "https://m.media-amazon.com/images/I/41fZqCOl0jL._SL350_.jpg"
-  },
-  {
-    "bookName": "The Diary of a Young Girl",
-    "authorName": "Anne Frank",
-    "rating": "4.5",
-    "category": "Nobel",
-    "description": "The diary of Anne Frank during the Holocaust. Anne Frank's diary is a powerful and poignant account of her experiences in hiding during World War II. It offers a firsthand perspective on the challenges and struggles faced by Anne and her family during this dark period in history.",
-    "quantity": "12",
-    "bookPhoto": "https://img.thriftbooks.com/api/images/i/m/4F21FCEED90CB4E496C9B63F6262F69112294226.jpg"
-  },
-  {
-    "bookName": "A Beautiful Mind",
-    "authorName": "Sylvia Nasar",
-    "rating": "4.4",
-    "category": "Nobel",
-    "description": "The life of Nobel laureate John Nash Jr. Dive into the life and achievements of John Nash, a brilliant mathematician and economist. This biography explores his academic contributions and personal journey, including his battle with schizophrenia.",
-    "quantity": "18",
-    "bookPhoto": "https://img.thriftbooks.com/api/images/m/6c0edbb31030a8422586b8646405a04e6331cefd.jpg"
-  },
-  {
-    "bookName": "The Alchemist",
-    "authorName": "Paulo Coelho",
+    "bookName": "Maus",
+    "authorName": "Art Spiegelman",
     "rating": "4.6",
-    "category": "Nobel",
-    "description": "A novel about a shepherd's journey to find his treasure. Join Santiago, a shepherd boy, on his quest for a hidden treasure. This philosophical novel by Paulo Coelho explores themes of destiny, dreams, and the pursuit of one's personal legend.",
+    "category": "Comic",
+    "description": "A Pulitzer Prize-winning graphic novel that tells the powerful story of Vladek Spiegelman, a Jewish survivor of the Holocaust, and his son's efforts to understand his father's experiences. Using anthropomorphic animal characters, 'Maus' offers a unique and emotionally impactful perspective on the Holocaust.",
+    "quantity": "8",
+    "bookPhoto": "https://img.thriftbooks.com/api/images/i/m/1F7ED837D072C56C2935B16DDCCAFC38D9717908.jpg"
+  },
+  {
+    "bookName": "Persepolis",
+    "authorName": "Marjane Satrapi",
+    "rating": "4.5",
+    "category": "Comic",
+    "description": "An autobiographical graphic novel that portrays the author's childhood and young adulthood in Iran during and after the Islamic Revolution. 'Persepolis' is a coming-of-age story that provides insight into the complexities of Iranian society and politics.",
     "quantity": "10",
-    "bookPhoto": "https://img.thriftbooks.com/api/images/m/877f45a5524b94b3f64872d00ac6ad01f74d002e.jpg"
+    "bookPhoto": "https://img.thriftbooks.com/api/images/i/m/3A0F0B0A006AC33B28047A746DF05FCC4621ED84.jpg"
   },
   {
-    "bookName": "The Immortal Life of Henrietta Lacks",
-    "authorName": "Rebecca Skloot",
-    "rating": "4.1",
-    "category": "Nobel",
-    "description": "A true story of the woman behind the HeLa cells. Delve into the remarkable and untold story of Henrietta Lacks, whose cells were used in scientific research and medical breakthroughs. This book explores the ethical and scientific implications of her legacy.",
-    "quantity": "13",
-    "bookPhoto": "https://img.thriftbooks.com/api/images/i/m/55438BF646A3B6B560AA713963848022287E9043.jpg"
+    "bookName": "Watchmen",
+    "authorName": "Alan Moore",
+    "rating": "4.4",
+    "category": "Comic",
+    "description": "A groundbreaking graphic novel that deconstructs the superhero genre. 'Watchmen' presents a dark and complex narrative that explores the moral and psychological struggles of its characters in an alternate history where superheroes exist.",
+    "quantity": "15",
+    "bookPhoto": "https://img.thriftbooks.com/api/images/i/m/34E2729AB8CD3FFABF75735EE9068865F8F0A87A.jpg"
   },
   {
-    "bookName": "The Art of Happiness",
-    "authorName": "Dalai Lama",
+    "bookName": "Sandman",
+    "authorName": "Neil Gaiman",
     "rating": "4.7",
-    "category": "Art & Music",
-    "description": "A guide to finding joy and contentment. Discover the Dalai Lama's teachings on happiness and inner peace. This book offers practical wisdom and insights for leading a more fulfilling and joyful life.",
-    "quantity": "22",
-    "bookPhoto": "https://img.thriftbooks.com/api/images/i/m/D58FCF360F84683DAE30608B9BF4C697A57448BB.jpg"
+    "category": "Comic",
+    "description": "A critically acclaimed comic book series that follows Dream, one of the Endless, as he navigates the world of dreams and mythology. 'Sandman' is known for its intricate storytelling and imaginative world-building.",
+    "quantity": "12",
+    "bookPhoto": "https://img.thriftbooks.com/api/images/i/m/F21DA947C7A976D216FEDF42EA32A365A30E2E4C.jpg"
   },
   {
-    "bookName": "Leonardo da Vinci",
-    "authorName": "Walter Isaacson",
+    "bookName": "Saga",
+    "authorName": "Brian K. Vaughan",
     "rating": "4.8",
-    "category": "Art & Music",
-    "description": "A biography of the iconic artist and inventor. Explore the life and genius of Leonardo da Vinci, one of the most influential figures in art and science. This biography provides a comprehensive look at his artistic works and inventions.",
-    "quantity": "14",
-    "bookPhoto": "https://img.thriftbooks.com/api/images/i/m/3E70484506F697807B3F543A289AB71D3A8940D5.jpg"
-  },
-  {
-    "bookName": "The Music Lesson",
-    "authorName": "Victor L. Wooten",
-    "rating": "4.3",
-    "category": "Art & Music",
-    "description": "A spiritual journey through music. Join Victor L. Wooten on a unique musical journey that explores the spiritual and creative aspects of music. This book offers a fresh perspective on the art of playing and experiencing music.",
-    "quantity": "16",
-    "bookPhoto": "https://m.media-amazon.com/images/I/51Mf3XRKsaL._SL350_.jpg"
-  },
-  {
-    "bookName": "The Artist's Way",
-    "authorName": "Julia Cameron",
-    "rating": "4.1",
-    "category": "Art & Music",
-    "description": "A guide to discovering and recovering creativity. The Artist's Way is a transformative guide to unlocking your creative potential. Julia Cameron provides practical exercises and insights to help individuals tap into their artistic abilities.",
-    "quantity": "19",
-    "bookPhoto": "https://img.thriftbooks.com/api/images/i/m/9567A9C2FDB72616C953EED5BF0050E7F21A4CF9.jpg"
-  },
-  {
-    "bookName": "The Power of Art",
-    "authorName": "Simon Schama",
-    "rating": "4.4",
-    "category": "Art & Music",
-    "description": "Exploring the transformative power of art. The Power of Art takes readers on a captivating journey through the history of art and its impact on culture and society. Simon Schama delves into the lives of artists and the meaning of their works.",
+    "category": "Comic",
+    "description": "An epic space opera comic series that follows two lovers from warring extraterrestrial races as they go on the run with their newborn daughter. 'Saga' is known for its inventive world-building, unique characters, and complex themes.",
     "quantity": "20",
-    "bookPhoto": "https://m.media-amazon.com/images/I/513GhRxzYML._SL350_.jpg"
-  },
-  {
-    "bookName": "A People's History of the United States",
-    "authorName": "Howard Zinn",
-    "rating": "4.6",
-    "category": "History",
-    "description": "A history of the United States from the perspective of the marginalized. A People's History of the United States provides a unique and alternative view of American history. Howard Zinn explores the stories of ordinary people and their struggles for justice and equality.",
-    "quantity": "9",
-    "bookPhoto": "https://m.media-amazon.com/images/I/616h74VIL2L._SL350_.jpg"
-  },
-  {
-    "bookName": "The Second World War",
-    "authorName": "Sir Winston Churchill",
-    "rating": "4.4",
-    "category": "History",
-    "description": "Winston Churchill's account of World War II. Experience World War II through the eyes of Sir Winston Churchill, one of the key figures in the war. His account provides a firsthand perspective on the challenges and decisions during this pivotal moment in history.",
-    "quantity": "17",
-    "bookPhoto": "https://img.thriftbooks.com/api/images/i/m/FBEC86839E8AAB0A59738D2897EC3206B45219D0.jpg"
-  },
-  {
-    "bookName": "Guns, Germs, and Steel",
-    "authorName": "Jared Diamond",
-    "rating": "4.0",
-    "category": "History",
-    "description": "A study of human societies and their fates. Guns, Germs, and Steel is a thought-provoking exploration of the factors that have shaped human history. Jared Diamond examines the influences of geography, technology, and culture on the rise and fall of civilizations.",
-    "quantity": "11",
-    "bookPhoto": "https://img.thriftbooks.com/api/images/m/d7623f5d380a021433b75388708c0eb87f6b1df9.jpg"
-  },
-  {
-    "bookName": "The Wright Brothers",
-    "authorName": "David McCullough",
-    "rating": "4.2",
-    "category": "History",
-    "description": "A biography of the pioneering aviation duo. Explore the incredible journey of the Wright brothers, pioneers of aviation. David McCullough's biography provides a detailed account of their determination, innovation, and the birth of powered flight.",
-    "quantity": "10",
-    "bookPhoto": "https://img.thriftbooks.com/api/images/i/m/8498C5DC145536528B7E57996CDC03EFDAAEBE6B.jpg"
-  },
-  {
-    "bookName": "A Short History of Nearly Everything",
-    "authorName": "Bill Bryson",
-    "rating": "3.9",
-    "category": "History",
-    "description": "A journey through the history of science and discovery. Embark on a captivating journey through the world of science and exploration with Bill Bryson. This book offers a delightful exploration of the mysteries of our universe and the fascinating stories of scientific discovery.",
-    "quantity": "15",
-    "bookPhoto": "https://img.thriftbooks.com/api/images/i/m/E62659768C6FE7EC16003AE2D1F6AEDB0C6DDA80.jpg"
-  },
-  {
-    "bookName": "Where the Wild Things Are",
-    "authorName": "Maurice Sendak",
-    "rating": "4.5",
-    "category": "Kids",
-    "description": "The classic children's story of Max and the Wild Things. Where the Wild Things Are is a beloved children's classic that takes readers on an imaginative adventure with Max. Join him as he encounters the Wild Things in this timeless and whimsical tale.",
-    "quantity": "20",
-    "bookPhoto": "https://img.thriftbooks.com/api/images/i/m/EBB9CDDF8B0EAD8449A022036CA4EB80F4D0B6D6.jpg"
-  },
-  {
-    "bookName": "The Very Hungry Caterpillar",
-    "authorName": "Eric Carle",
-    "rating": "4.3",
-    "category": "Kids",
-    "description": "A beloved children's book about a hungry caterpillar. The Very Hungry Caterpillar is a timeless children's story that follows the journey of a little caterpillar as it transforms into a beautiful butterfly. This engaging book teaches counting, days of the week, and more.",
-    "quantity": "18",
-    "bookPhoto": "https://img.thriftbooks.com/api/images/i/m/44E75D9DC4426DE188A5DFD27C58CB5E43B58DB3.jpg"
-  },
-  {
-    "bookName": "Goodnight Moon",
-    "authorName": "Margaret Wise Brown",
-    "rating": "4.4",
-    "category": "Kids",
-    "description": "A bedtime classic for children. Goodnight Moon is a beloved bedtime classic that helps children wind down and prepare for sleep. Join the little rabbit as it says goodnight to everything in the room in this soothing and comforting story.",
-    "quantity": "15",
-    "bookPhoto": "https://img.thriftbooks.com/api/images/i/m/8E2B51242EBDA5CF20E91D077437C9E80C0E616E.jpg"
-  },
-  {
-    "bookName": "Harry Potter and the Sorcerer's Stone",
-    "authorName": "J.K. Rowling",
-    "rating": "4.5",
-    "category": "Kids",
-    "description": "The first book in the Harry Potter series introduces readers to the young wizard, Harry Potter, who discovers his magical abilities and embarks on a journey to Hogwarts School of Witchcraft and Wizardry. He befriends Ron Weasley and Hermione Granger, and together, they uncover the mystery of the Sorcerer's Stone. This enchanting tale is filled with magic, friendship, and the battle between good and evil. Join Harry as he discovers the world of witches and wizards, and faces the dark wizard, Lord Voldemort.",
-    "quantity": "12",
-    "bookPhoto": "https://img.thriftbooks.com/api/images/m/2d28f68a5e128c0558b07571d45fe3d2ad4f172b.jpg"
-  },
-  {
-    "bookName": "Winnie-the-Pooh",
-    "authorName": "A.A. Milne",
-    "rating": "4.2",
-    "category": "Kids",
-    "description": "Step into the enchanting world of the Hundred Acre Wood, where Winnie-the-Pooh, a lovable bear with a penchant for honey, resides. Join him and his friends, including Piglet, Tigger, and Eeyore, in their heartwarming adventures. A.A. Milne's timeless stories of friendship and simple joys continue to captivate readers of all ages, making this classic a beloved treasure that generations can enjoy together.",
-    "quantity": "14",
-    "bookPhoto": "https://img.thriftbooks.com/api/images/i/m/6C4BE7C4C332B8D87BE0F8BC44C72822A125E5E5.jpg"
-  },
-  {
-    "bookName": "Harry Potter and the Sorcerer's Stone",
-    "authorName": "J.K. Rowling",
-    "rating": "4.5",
-    "category": "Fantasy",
-    "description": "The first installment of the Harry Potter series takes readers on a journey into a world of magic, mystery, and adventure. Follow the young wizard Harry Potter as he discovers his true identity, his place in the wizarding world, and the dark history of Lord Voldemort. This epic tale of courage, friendship, and the triumph of good over evil has enchanted readers of all ages and continues to be a timeless classic in the fantasy genre.",
-    "quantity": "20",
-    "bookPhoto": "https://img.thriftbooks.com/api/images/m/2d28f68a5e128c0558b07571d45fe3d2ad4f172b.jpg"
-  },
-  {
-    "bookName": "The Hobbit",
-    "authorName": "J.R.R. Tolkien",
-    "rating": "4.3",
-    "category": "Fantasy",
-    "description": "Journey alongside Bilbo Baggins, a hobbit who is thrust into an epic quest to reclaim the Lonely Mountain and its treasure from the fearsome dragon, Smaug. In J.R.R. Tolkien's enchanting world, Bilbo encounters trolls, elves, goblins, and a mysterious ring that will play a pivotal role in the events of Middle-earth. 'The Hobbit' is a timeless adventure filled with courage, camaraderie, and the power of ordinary individuals in extraordinary circumstances.",
-    "quantity": "18",
-    "bookPhoto": "https://img.thriftbooks.com/api/images/i/m/5759C926B74B0E671E952AC6ABC82C54DCE9888A.jpg"
-  },
-  {
-    "bookName": "A Song of Ice and Fire (A Game of Thrones)",
-    "authorName": "George R.R. Martin",
-    "rating": "4.4",
-    "category": "Fantasy",
-    "description": "Enter the complex and treacherous world of Westeros, where noble houses vie for power and the Iron Throne. George R.R. Martin's epic 'A Song of Ice and Fire' series weaves a tale of political intrigue, alliances, betrayals, and a looming threat from the White Walkers. With an array of memorable characters, including the honorable Stark family, the cunning Lannisters, and the exiled Targaryens, this series explores the dark side of power and the consequences of ambition in a richly crafted fantasy world.",
-    "quantity": "15",
-    "bookPhoto": "https://img.thriftbooks.com/api/images/i/m/453A38C8D465CC5A5286D467E1A817AFFC9007AD.jpg"
-  },
-  {
-    "bookName": "Mistborn: The Final Empire",
-    "authorName": "Brandon Sanderson",
-    "rating": "4.6",
-    "category": "Fantasy",
-    "description": "In a world where a dark lord known as the Lord Ruler holds dominion, a young street thief named Vin discovers her latent magical abilities and joins a group of rebels to overthrow the oppressive regime. Brandon Sanderson's 'Mistborn' series is a captivating exploration of a unique magic system, a world shrouded in ash, and a fight for freedom. Follow Vin and her comrades as they challenge destiny and seek to make a better world for all.",
-    "quantity": "12",
-    "bookPhoto": "https://img.thriftbooks.com/api/images/m/78c96d2d05f669f52b4ea8623df37f701fa710cf.jpg"
-  },
-  {
-    "bookName": "The Name of the Wind",
-    "authorName": "Patrick Rothfuss",
-    "rating": "4.1",
-    "category": "Fantasy",
-    "description": "Immerse yourself in the tale of Kvothe, a gifted young musician and magician who grows into a legendary figure known as the Kingkiller. Patrick Rothfuss weaves a captivating narrative as Kvothe recounts his life's adventures, from his humble beginnings as a trouper to his time at the University, where he hones his magical skills. 'The Name of the Wind' is a story of music, magic, love, and the pursuit of knowledge, set in a world brimming with secrets and mysteries.",
-    "quantity": "14",
-    "bookPhoto": "https://img.thriftbooks.com/api/images/i/m/589792DF1182248B47BF0D4C95611E5026C5FD63.jpg"
+    "bookPhoto": "https://img.thriftbooks.com/api/images/m/5911f4572ee5f01c22c16da6efea6c88e5aa19ea.jpg"
   }
 ]

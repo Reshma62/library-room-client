@@ -17,7 +17,7 @@ const Testimonial = () => {
           effect={"coverflow"}
           grabCursor={true}
           centeredSlides={true}
-          slidesPerView={3}
+          slidesPerView={1}
           coverflowEffect={{
             rotate: 50,
             stretch: 0,
@@ -28,6 +28,12 @@ const Testimonial = () => {
           pagination={true}
           modules={[EffectCoverflow, Pagination]}
           className="mySwiper"
+          breakpoints={{
+            // When the screen width is less than 640px (typical mobile size), display only 1 slide per view
+            640: {
+              slidesPerView: 3,
+            },
+          }}
         >
           <SwiperSlide>
             <ClientCard />

@@ -1,6 +1,20 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import baseUrl from "../../utils/baseUrl";
 
 const Dashboard = () => {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    axios
+      .get(`${baseUrl}/admin/books-count`)
+      .then((result) => {
+        setCount(result?.data?.count);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <>
       <section className="pt-10">
@@ -19,7 +33,7 @@ const Dashboard = () => {
                   Total Books
                 </h2>
                 <p className="mb-3 leading-loose text-gray-500 sdftext-gray-400">
-                  50
+                  {count}
                 </p>
               </div>
             </div>

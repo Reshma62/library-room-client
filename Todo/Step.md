@@ -1,16 +1,14 @@
 ## HOme page
 
-FIXME: when enable dark mode chage the sdf to dark:
+Done: when enable dark mode chage the sdf to dark:
 
 Done: when reload private route should be loadding add
 
-TODO: make menu responsive
+Done: make menu responsive
 
 TODO: change the banner text and img
 
 TODO: change the footer content
-
-TODO: add category need to edit functionality
 
 DONE: show the category based product
 
@@ -28,8 +26,6 @@ Done filter , pagination,
 
 <!-- TODO: sorting -->
 
-TODO: set user based role if admin show the dashboard
-
 Doen: -Clicking on the “Read” button will take the user to a different page where the user can read
 some content of that book.
 
@@ -41,8 +37,11 @@ TODO: 1. Use JWT token for doing the CRUD operations in the "All Books" and `Add
 TODO: . Make the website responsive. Make sure the site looks different on desktop and mobile
 responsive. Tablet responsive is optional
 
-TODO: 5. Implementing a dark/light theme toggle for the home page. It's optional to implement the
+Done: 5. Implementing a dark/light theme toggle for the home page. It's optional to implement the
 theme toggle for the entire website
-
+// optional
 TODO: 5. Use ReactToPDF or any relevant package to make the PDF version of the "Read" page of a
 book.
+TODO: set user based role if admin show the dashboard
+
+TODO: add category need to edit functionality
