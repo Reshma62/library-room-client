@@ -5,13 +5,11 @@ import useAuthContext from "../../Hooks/useAuthContext";
 import useAxios from "../../Hooks/useAxios";
 import toast from "react-hot-toast";
 import useAllBooksQuery from "../../Hooks/useAllBooksQuery";
-import axios from "axios";
-import baseUrl from "../../utils/baseUrl";
 
 const QuickViewBookDetails = ({ data }) => {
   const { user } = useAuthContext();
   const { refetch } = useAllBooksQuery();
-  // const axios = useAxios();
+  const axios = useAxios();
   const {
     _id,
     bookName,
@@ -50,7 +48,7 @@ const QuickViewBookDetails = ({ data }) => {
     };
     console.log(borrowBookInfo, 31);
     axios
-      .post(`${baseUrl}/user/borrow-book`, borrowBookInfo)
+      .post(`/user/borrow-book`, borrowBookInfo)
       .then((result) => {
         console.log(result.data);
         if (result.data.error) {
@@ -61,7 +59,7 @@ const QuickViewBookDetails = ({ data }) => {
           // update the quantity
           refetch();
           axios
-            .patch(`${baseUrl}/admin/update-quantity/${_id}`)
+            .patch(`/admin/update-quantity/${_id}`)
             .then((result) => {
               console.log(result.data);
               refetch();

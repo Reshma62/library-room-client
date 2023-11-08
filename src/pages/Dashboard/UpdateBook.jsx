@@ -1,15 +1,16 @@
 import { useForm } from "react-hook-form";
 import Heading from "../../components/shared/Heading";
 import { useState } from "react";
-import axios from "axios";
-import baseUrl from "../../utils/baseUrl";
+
 import toast from "react-hot-toast";
 import useQueryCategory from "../../Hooks/useQueryCategory";
 import useAllBooksQuery from "../../Hooks/useAllBooksQuery";
 import Loading from "../../components/shared/Loading";
 import { useLoaderData } from "react-router-dom";
+import useAxios from "../../Hooks/useAxios";
 
 const UpdateBook = () => {
+  const axios = useAxios();
   const { isLoading, data: categorys } = useQueryCategory();
   const { refetch } = useAllBooksQuery();
   const {
@@ -49,7 +50,7 @@ const UpdateBook = () => {
     };
     console.log(booksInfo, 34);
     axios
-      .put(`${baseUrl}/admin/update-book/${_id}`, booksInfo)
+      .put(`/admin/update-book/${_id}`, booksInfo)
       .then((res) => {
         console.log(res.data);
         if (res.data.modifiedCount) {

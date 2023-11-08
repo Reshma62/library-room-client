@@ -9,11 +9,11 @@ import useAllBooksQuery from "../../Hooks/useAllBooksQuery";
 import { useParams } from "react-router-dom";
 import Loading from "./Loading";
 import baseUrl from "../../utils/baseUrl";
-import axios from "axios";
+// import axios from "axios";
 
 const AllBooksLayout = () => {
   const { category } = useParams();
-  // const axios = useAxios();
+  const axios = useAxios();
   const [count, setCount] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(6);
   const [currentPage, setCurrentPage] = useState(0);
@@ -22,7 +22,7 @@ const AllBooksLayout = () => {
 
   useEffect(() => {
     axios
-      .get(`${baseUrl}/admin/books-count`)
+      .get(`/admin/books-count`)
       .then((result) => {
         setCount(result?.data?.count);
       })

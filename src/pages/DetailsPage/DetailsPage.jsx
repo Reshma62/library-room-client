@@ -46,6 +46,7 @@ const DetailsPage = () => {
                   </h2>
                   <div className="flex items-center mb-6">
                     <Rating
+                      readonly
                       initialRating={rating}
                       fullSymbol={<AiFillStar className="text-primaryColor" />}
                       emptySymbol={

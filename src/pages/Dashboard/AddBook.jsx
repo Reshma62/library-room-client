@@ -4,11 +4,11 @@ import useQueryCategory from "../../Hooks/useQueryCategory";
 import Loading from "../../components/shared/Loading";
 import useAxios from "../../Hooks/useAxios";
 import toast from "react-hot-toast";
-import axios from "axios";
+
 import baseUrl from "../../utils/baseUrl";
 
 const AddBook = () => {
-  // const axios = useAxios();
+  const axios = useAxios();
   const { isLoading, data: category } = useQueryCategory();
   if (isLoading) {
     return <Loading />;
@@ -35,7 +35,7 @@ const AddBook = () => {
     };
     console.log(booksInfo, 34);
     axios
-      .post(`${baseUrl}/admin/create-book`, booksInfo)
+      .post(`/admin/create-book`, booksInfo)
       .then((res) => {
         if (res.data.insertedId) {
           toast.success("Book added successfully");

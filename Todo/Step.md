@@ -24,7 +24,7 @@ to a form page where the form will have the following fields:
 
 Done filter , pagination,
 
-<!-- TODO: sorting -->
+
 
 Doen: -Clicking on the “Read” button will take the user to a different page where the user can read
 some content of that book.

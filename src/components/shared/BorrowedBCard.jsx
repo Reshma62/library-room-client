@@ -3,11 +3,9 @@ import Rating from "react-rating";
 import { Link } from "react-router-dom";
 import useAxios from "../../Hooks/useAxios";
 import toast from "react-hot-toast";
-import axios from "axios";
-import baseUrl from "../../utils/baseUrl";
 
 const BorrowedBCard = ({ book, refetch }) => {
-  // const axios = useAxios();
+  const axios = useAxios();
   const {
     _id,
     bookId,
@@ -24,16 +22,15 @@ const BorrowedBCard = ({ book, refetch }) => {
   } = book || {};
 
   const handleReturn = () => {
-    console.log(_id);
     axios
-      .delete(`${baseUrl}/user/return-book/${_id}`)
+      .delete(`/user/return-book/${_id}`)
       .then((result) => {
         console.log(result.data);
         if (result.data.deletedCount) {
           toast.success("Successfully retrun the book");
           refetch();
           axios
-            .patch(`${baseUrl}/admin/update-quantity/${bookId}?returnBook=true`)
+            .patch(`/admin/update-quantity/${bookId}?returnBook=true`)
             .then((result) => {
               console.log(result.data);
               refetch();

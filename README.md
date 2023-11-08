@@ -16,9 +16,8 @@
 7. add multer for use category img upload
 8. add tanstck query for fetch data
 9. when add borrow book can not add multiple time in one user and also update the quantity when add borrow book and return book
-10.
-
-11. add dark mode and light mode . even after reloading the page stay in dark
+10. add filter when some book quantity is 0 , if in stock button click only show > 0 in quantity
+11. swiper js
+12. add dark mode and light mode . even after reloading the page stay in dark
     mode or light mode
-12. add google and github providers to the login.
-13.
+13. add google and github providers to the login.

@@ -1,20 +1,20 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import baseUrl from "../../utils/baseUrl";
+
+import useAxios from "../../Hooks/useAxios";
 
 const Dashboard = () => {
+  const axios = useAxios();
   const [count, setCount] = useState(0);
   useEffect(() => {
     axios
-      .get(`${baseUrl}/admin/books-count`)
+      .get(`/admin/books-count`)
       .then((result) => {
         setCount(result?.data?.count);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [axios]);
   return (
     <>
       <section className="pt-10">

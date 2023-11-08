@@ -69,7 +69,10 @@ const MainRoute = createBrowserRouter([
             <ReadBook />
           </PrivateRoute>
         ),
-        loader: ({ params }) => fetch(`${baseUrl}/user/read-book/${params.id}`),
+        loader: ({ params }) =>
+          fetch(`${baseUrl}/user/read-book/${params.id}`, {
+            credentials: "include",
+          }),
       },
       {
         path: "books/:category",
@@ -87,7 +90,9 @@ const MainRoute = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`${baseUrl}/admin/get-single-book/${params.id}`),
+          fetch(`${baseUrl}/admin/get-single-book/${params.id}`, {
+            credentials: "include",
+          }),
       },
     ],
   },
@@ -124,7 +129,9 @@ const MainRoute = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`${baseUrl}/admin/get-single-book/${params.id}`),
+          fetch(`${baseUrl}/admin/get-single-book/${params.id}`, {
+            credentials: "include",
+          }),
       },
       {
         path: "/dashboard/all-book-list",

@@ -15,6 +15,7 @@ import {
 } from "firebase/storage";
 // import axios from "axios";
 import useAxios from "../../Hooks/useAxios";
+
 const Register = () => {
   const axios = useAxios();
   const [image, setImage] = useState(null);
@@ -93,8 +94,9 @@ const Register = () => {
             setTimeout(() => {
               navigate("/login");
             }, 1500);
+
             axios
-              .post("/auth/register-user", userInfo)
+              .post(`/auth/register-user`, userInfo)
               .then((result) => {})
               .catch((err) => {
                 console.log("error is: ", err);

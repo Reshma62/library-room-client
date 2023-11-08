@@ -5,14 +5,12 @@ import AllCategoryLists from "./AllCategoryLists";
 import useAxios from "../../Hooks/useAxios";
 import toast from "react-hot-toast";
 import useQueryCategory from "../../Hooks/useQueryCategory";
-import axios from "axios";
-import baseUrl from "../../utils/baseUrl";
 
 const CategoryList = () => {
   const { data, isLoading, refetch } = useQueryCategory();
   const [imgUrl, setImgUrl] = useState(null);
 
-  // const axios = useAxios();
+  const axios = useAxios();
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -27,7 +25,7 @@ const CategoryList = () => {
 
     const data = { image, name };
     axios
-      .post(`${baseUrl}/admin/create-category`, data, {
+      .post(`/admin/create-category`, data, {
         headers: {
           "Content-Type": "multipart/form-data", // Important for file uploads
         },
