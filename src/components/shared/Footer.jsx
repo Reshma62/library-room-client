@@ -33,11 +33,11 @@ const Footer = () => {
                 href="#"
                 className="inline-block mb-4 text-xl font-bold text-gray-200 dark:text-gray-400"
               >
-                About Company
+                About library room
               </a>
               <p className="text-base font-normal leading-6 text-gray-300 lg:w-64 dark:text-gray-400">
-                Lorem ipsum dor amet Lorem ipsum dor amet Lorem ipsum dor amet
-                Lorem ipsum dor amet
+                There are five fundamental characteristics shared by public
+                libraries: they are generally supported by taxes
               </p>
               <div className="flex justify-start mt-4 ">
                 <a
