@@ -118,7 +118,7 @@ const Header = () => {
               ))}
             </ul>
 
-            <div className="hidden lg:flex">
+            <div className="hidden lg:flex items-center gap-5">
               {user ? (
                 <UseProfile />
               ) : (
@@ -128,20 +128,20 @@ const Header = () => {
                   </button>
                 </Link>
               )}
-            </div>
-            {/* Dark mode button */}
-            <div className="hidden lg:flex text-3xl cursor-pointer">
-              {isDark ? (
-                <BsFillSunFill
-                  className="text-white text-lg"
-                  onClick={toggleTheme}
-                />
-              ) : (
-                <BsFillMoonFill
-                  className="text-white text-lg"
-                  onClick={toggleTheme}
-                />
-              )}
+              {/* Dark mode button */}
+              <div className="hidden lg:flex text-3xl cursor-pointer">
+                {isDark ? (
+                  <BsFillSunFill
+                    className="text-white text-lg"
+                    onClick={toggleTheme}
+                  />
+                ) : (
+                  <BsFillMoonFill
+                    className="text-white text-lg"
+                    onClick={toggleTheme}
+                  />
+                )}
+              </div>
             </div>
 
             {/* Mobile menu */}
@@ -166,8 +166,8 @@ const Header = () => {
 
             <div
               className={`absolute ${
-                open ? " top-full " : "-top-[500px]"
-              } duration-500 bg-primaryColor dark:bg-slate-600 right-0  w-full z-50 py-5 px-10`}
+                open ? " top-full " : "-top-[2500px]"
+              } duration-200 bg-primaryColor dark:bg-slate-600 right-0  w-full z-50 py-5 px-10`}
             >
               <ul className="flex flex-col  gap-2 ">
                 {menuItems.map((menuItem) => (
@@ -229,10 +229,6 @@ const Header = () => {
                       <Link onClick={() => setOpen(!open)} to={"/login"}>
                         Login
                       </Link>{" "}
-                      /{" "}
-                      <Link onClick={() => setOpen(!open)} to={"/register"}>
-                        Register
-                      </Link>
                     </p>
                   </>
                 )}

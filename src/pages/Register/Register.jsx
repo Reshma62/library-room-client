@@ -18,21 +18,21 @@ import useAxios from "../../Hooks/useAxios";
 
 const Register = () => {
   const axios = useAxios();
-  const [image, setImage] = useState(null);
+  /*   const [image, setImage] = useState(null);
   const [imageURL, setImageURL] = useState(null);
   const [cropData, setCropData] = useState("");
-  const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false); */
   const [showPass, setshowPass] = useState(false);
   const { createUser, updateUser } = useAuthContext();
   const navigate = useNavigate();
-  const cropperRef = useRef(null);
+  // const cropperRef = useRef(null);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  function toggleModal() {
+  /*   function toggleModal() {
     setOpenModal(!openModal);
   }
   const handleFileChange = (e) => {
@@ -72,21 +72,21 @@ const Register = () => {
           });
       });
     });
-  };
+  }; */
   const submitData = (data) => {
     // console.log(Object.keys(data).join(", "));
-    const { userName, email, password, role } = data;
+    const { userName, email, password, role, imgUrl } = data;
     const userInfo = {
       userName,
       email,
       password,
       role,
-      profilepic: imageURL,
+      imgUrl,
     };
 
     createUser(email, password)
       .then((result) => {
-        updateUser(userName, image)
+        updateUser(userName, imgUrl)
           .then((result) => {
             toast.success(
               "Registation successfull. Please wait for redirects.."
@@ -219,30 +219,47 @@ const Register = () => {
                 )}
               </div> */}
               <div className="mb-6">
-                <p className="text-lg text-primaryColor font-bold">Name</p>
+                <p className="text-lg text-primaryColor font-bold">
+                  Profile Picture
+                </p>
                 <div className="relative flex items-center">
                   <input
-                    {...register("userName", { required: true })}
+                    {...register("imgUrl", { required: true })}
                     type="text"
                     className="w-full px-4 py-4 bg-gray-200 rounded-lg lg:py-5 sdftext-gray-300 sdfbg-gray-700 "
-                    name="userName"
-                    placeholder="Enter Name"
+                    name="imgUrl"
+                    placeholder="Enter profile image url"
                   />
                 </div>
+                {errors.imgUrl && (
+                  <p className="text-red-500">Image is required</p>
+                )}
+              </div>
+
+              <div className="mb-7">
+                <p className="text-lg text-primaryColor font-bold">Name</p>
+                <input
+                  {...register("userName", { required: true })}
+                  type="text"
+                  className="w-full px-4 py-4 bg-gray-200 rounded-lg sdfbg-gray-700 lg:py-5 sdftext-gray-300 "
+                  name="userName"
+                  placeholder="Enter your Name"
+                />
                 {errors.userName && (
                   <p className="text-red-500">Name is required</p>
                 )}
               </div>
-              <div className="mb-7">
+              <div className="mb-6">
                 <p className="text-lg text-primaryColor font-bold">Email</p>
-                <input
-                  {...register("email", { required: true })}
-                  type="email"
-                  className="w-full px-4 py-4 bg-gray-200 rounded-lg sdfbg-gray-700 lg:py-5 sdftext-gray-300 "
-                  name="email"
-                  placeholder="Enter your email"
-                  autoComplete="email"
-                />
+                <div className="relative flex items-center">
+                  <input
+                    {...register("email", { required: true })}
+                    type="email"
+                    className="w-full px-4 py-4 bg-gray-200 rounded-lg lg:py-5 sdftext-gray-300 sdfbg-gray-700 "
+                    name="email"
+                    placeholder="Enter email"
+                  />
+                </div>
                 {errors.email && (
                   <p className="text-red-500">Email is required</p>
                 )}
