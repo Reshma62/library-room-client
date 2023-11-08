@@ -9,10 +9,12 @@ import "swiper/css/pagination";
 import { EffectCoverflow, Pagination } from "swiper/modules";
 import Container from "../shared/Container";
 import ClientCard from "./ClientCard";
+import Heading from "../shared/Heading";
 const Testimonial = () => {
   return (
     <section className="py-20 bg-white dark:bg-gray-700">
       <Container>
+        <Heading title={"Testimonial "} span={"Consumer"} headings={"Review"} />
         <Swiper
           effect={"coverflow"}
           grabCursor={true}

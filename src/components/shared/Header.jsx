@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import Container from "./Container";
-import { AiOutlineUser } from "react-icons/ai";
+import { AiOutlineUser, AiFillCloseCircle } from "react-icons/ai";
 import useAuthContext from "../../Hooks/useAuthContext";
 import UseProfile from "./UseProfile";
 import { useEffect, useState } from "react";
@@ -26,11 +26,16 @@ const menuItems = [
 
   {
     id: 4,
+    name: "Add Book",
+    href: "/dashboard/add-book",
+  },
+  {
+    id: 5,
     name: "Borrowed Books",
     href: "/borrowed-books",
   },
   {
-    id: 5,
+    id: 6,
     name: "Dashboard",
     href: "/dashboard",
   },
@@ -78,7 +83,10 @@ const Header = () => {
       document.body.classList.remove("dark");
     }
   };
-
+  const handleOpenMenu = () => {
+    console.log("first");
+    setOpen(!open);
+  };
   return (
     <>
       <section className={`bg-primaryColor dark:bg-gray-900 font-Cabin`}>
@@ -137,85 +145,14 @@ const Header = () => {
             </div>
 
             {/* Mobile menu */}
-            <div className="flex gap-4 md:hidden text-white">
-              <button onClick={() => setOpen(!open)}>
-                <FaBarsStaggered className="text-xl text" />
+            <div className="flex gap-4 md:hidden text-white relative">
+              <button className="te" onClick={handleOpenMenu}>
+                {open ? (
+                  <AiFillCloseCircle className="text-xl" />
+                ) : (
+                  <FaBarsStaggered className="text-xl test" />
+                )}
               </button>
-
-              <div
-                className={`absolute ${
-                  !open ? "-top-[500px]" : "top-full"
-                } duration-500 bg-primaryColor dark:bg-slate-600 right-0 top-full w-full z-50 py-5 px-10`}
-              >
-                <ul className="flex flex-col  gap-2 ">
-                  {menuItems.map((menuItem) => (
-                    <li key={menuItem.id}>
-                      <NavLink
-                        to={menuItem.href}
-                        className={({ isActive }) =>
-                          `text-sm ${
-                            isActive
-                              ? "bg-white text-primaryColor"
-                              : "bg-transparent text-white"
-                          }  dark:text-gray-300 text-base leading-8 inline-block py-1 px-2 hover:text-blue-200 dark:hover:text-blue-300 rounded-md capitalize font-medium`
-                        }
-                      >
-                        {menuItem.name}
-                      </NavLink>
-                    </li>
-                  ))}
-                </ul>
-                <div className=" gap-4 items-center text-white">
-                  {user ? (
-                    <div className="">
-                      <div className="flex gap-5 my-5">
-                        <label className="btn btn-ghost btn-circle avatar">
-                          <div className="w-20 rounded-full border-2  border-solid border-slate-900">
-                            <img src={user?.photoURL} />
-                          </div>
-                        </label>
-                        <div>
-                          <p>Hello</p>
-                          <p className="font-bold text-white">
-                            {user.displayName}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="">
-                        <ul className="mt-3 z-[1] p-2  rounded-box w-52">
-                          <li>
-                            <a>
-                              Email:{" "}
-                              <span className="font-bold text-white">
-                                {user.email}
-                              </span>
-                            </a>
-                          </li>
-                          <li
-                            className="bg-primary cursor-pointer px-5 inline-block py-2.5 font-black text-white text-lg mt-5 rounded-2xl"
-                            onClick={handleLogOut}
-                          >
-                            <a>Logout</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  ) : (
-                    <>
-                      <AiOutlineUser className="text-4xl" />
-                      <p className="text-xl">
-                        <Link onClick={() => setOpen(!open)} to={"/login"}>
-                          Login
-                        </Link>{" "}
-                        /{" "}
-                        <Link onClick={() => setOpen(!open)} to={"/register"}>
-                          Register
-                        </Link>
-                      </p>
-                    </>
-                  )}
-                </div>
-              </div>
 
               {/* Dark mode button */}
               <div className="flex text-xl cursor-pointer">
@@ -223,6 +160,81 @@ const Header = () => {
                   <BsFillSunFill onClick={toggleTheme} />
                 ) : (
                   <BsFillMoonFill onClick={toggleTheme} />
+                )}
+              </div>
+            </div>
+
+            <div
+              className={`absolute ${
+                open ? " top-full " : "-top-[500px]"
+              } duration-500 bg-primaryColor dark:bg-slate-600 right-0  w-full z-50 py-5 px-10`}
+            >
+              <ul className="flex flex-col  gap-2 ">
+                {menuItems.map((menuItem) => (
+                  <li key={menuItem.id}>
+                    <NavLink
+                      to={menuItem.href}
+                      className={({ isActive }) =>
+                        `text-sm ${
+                          isActive
+                            ? "bg-white text-primaryColor"
+                            : "bg-transparent text-white"
+                        }  dark:text-gray-300 text-base leading-8 inline-block py-1 px-2 hover:text-blue-200 dark:hover:text-blue-300 rounded-md capitalize font-medium`
+                      }
+                    >
+                      {menuItem.name}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+              <div className=" gap-4 items-center text-white">
+                {user ? (
+                  <div className="">
+                    <div className="flex gap-5 my-5">
+                      <label className="btn btn-ghost btn-circle avatar">
+                        <div className="w-20 rounded-full border-2  border-solid border-slate-900">
+                          <img src={user?.photoURL} />
+                        </div>
+                      </label>
+                      <div>
+                        <p>Hello</p>
+                        <p className="font-bold text-white">
+                          {user.displayName}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="">
+                      <ul className="mt-3 z-[1] p-2  rounded-box w-52">
+                        <li>
+                          <a>
+                            Email:{" "}
+                            <span className="font-bold text-white">
+                              {user.email}
+                            </span>
+                          </a>
+                        </li>
+                        <li
+                          className="bg-primary cursor-pointer px-5 inline-block py-2.5 font-black text-white text-lg mt-5 rounded-2xl"
+                          onClick={handleLogOut}
+                        >
+                          <a>Logout</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <AiOutlineUser className="text-4xl" />
+                    <p className="text-xl">
+                      <Link onClick={() => setOpen(!open)} to={"/login"}>
+                        Login
+                      </Link>{" "}
+                      /{" "}
+                      <Link onClick={() => setOpen(!open)} to={"/register"}>
+                        Register
+                      </Link>
+                    </p>
+                  </>
                 )}
               </div>
             </div>

@@ -18,7 +18,7 @@ const Banner = () => {
           clickable: true,
         }}
         modules={[Mousewheel, Pagination]}
-        className="mySwiper lg:h-[60vh] h-[40vh]"
+        className="mySwiper h-[64vh] "
       >
         {/* slider 1 */}
         <SwiperSlide>

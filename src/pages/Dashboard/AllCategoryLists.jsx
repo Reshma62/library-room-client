@@ -29,7 +29,7 @@ const AllCategoryLists = ({ data, isLoading, refetch }) => {
   };
   return (
     <section className=" font-poppins sdfbg-gray-800 ">
-      <div className="justify-center px-4 py-4 mx-auto lg:py-8 md:px-6 w-[800px]">
+      <div className="justify-center px-4 py-4 mx-auto lg:py-8 md:px-6 w-[200px] lg:w-[800px]">
         <div className="pt-4 rounded shadow bg-stone-100 sdfbg-gray-900">
           <div className="flex flex-wrap items-center justify-between px-6 pb-4 border-b sdfborder-gray-700">
             <h2 className="mb-4 text-xl font-bold md:mb-0 sdftext-gray-400">

@@ -5,8 +5,6 @@ const DashboardLayout = () => {
   return (
     <div className="font-Cabin">
       <DashboardNavbar outLet={<Outlet />} />
-
-      <p>footer</p>
     </div>
   );
 };

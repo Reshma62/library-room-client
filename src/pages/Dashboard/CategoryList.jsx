@@ -46,11 +46,11 @@ const CategoryList = () => {
   return (
     <div className="pt-20">
       <Heading title={"Add Category"} span={"Add"} headings={"Category"} />
-      <div className="flex gap-8">
+      <div className="flex flex-col md:flex-row gap-8">
         <form onSubmit={handleDataSend} className="font-Cabin ">
-          <div className="flex gap-8">
+          <div className="">
             <div>
-              <div className="w-[500px] mb-3">
+              <div className="w-[280px] md:w-[500px] mb-3">
                 <label className="font-bold text-lg inline-block text-primaryColor pb-2">
                   Add Category
                 </label>
@@ -61,7 +61,7 @@ const CategoryList = () => {
                 />
               </div>
 
-              <div className="w-[500px] mb-3">
+              <div className="w-[280px] md:w-[500px] mb-3">
                 <div className="py-2 shrink-0">
                   <img
                     className="object-cover w-32 h-32 rounded-lg border border-solid border-primaryColor"
@@ -94,7 +94,7 @@ const CategoryList = () => {
             </button>
           </div>
         </form>
-        <div>
+        <div className="hidden lg:inline-block">
           <AllCategoryLists
             data={data}
             isLoading={isLoading}

@@ -70,7 +70,7 @@ const UpdateBook = () => {
       <form onSubmit={submitData} className="font-Cabin ">
         <div className="flex gap-8">
           <div>
-            <div className="w-[500px] mb-3">
+            <div className="w-[280px] md:w-[500px] mb-3">
               <label className="font-bold text-lg inline-block text-primaryColor pb-2">
                 Book Name
               </label>
@@ -81,7 +81,7 @@ const UpdateBook = () => {
                 placeholder="Enter the Book Name"
               />
             </div>
-            <div className="w-[500px] mb-3">
+            <div className="w-[280px] md:w-[500px] mb-3">
               <label className="font-bold text-lg inline-block text-primaryColor pb-2">
                 Author Name
               </label>
@@ -92,7 +92,7 @@ const UpdateBook = () => {
                 placeholder="Enter the Author Name"
               />
             </div>
-            <div className="w-[500px] mb-3">
+            <div className="w-[280px] md:w-[500px] mb-3">
               <label className="font-bold text-lg inline-block text-primaryColor pb-2">
                 Quantity
               </label>
@@ -103,7 +103,7 @@ const UpdateBook = () => {
                 placeholder="Enter the Book Quantity"
               />
             </div>
-            <div className="w-[500px] mb-3">
+            <div className="w-[280px] md:w-[500px] mb-3">
               <label className="font-bold text-lg inline-block text-primaryColor pb-2">
                 Description
               </label>
@@ -116,7 +116,7 @@ const UpdateBook = () => {
             </div>
           </div>
           <div>
-            <div className="w-[500px] mb-3">
+            <div className="w-[280px] md:w-[500px] mb-3">
               <label className="font-bold text-lg inline-block text-primaryColor pb-2">
                 Rating
               </label>
@@ -127,7 +127,7 @@ const UpdateBook = () => {
                 placeholder="Enter Book Rating"
               />
             </div>
-            <div className="w-[500px] mb-3">
+            <div className="w-[280px] md:w-[500px] mb-3">
               <label className="font-bold text-lg inline-block text-primaryColor pb-2">
                 Select Category
               </label>
@@ -146,7 +146,7 @@ const UpdateBook = () => {
                 ))}
               </select>
             </div>
-            <div className="w-[500px] mb-3">
+            <div className="w-[280px] md:w-[500px] mb-3">
               <label className="font-bold text-lg inline-block text-primaryColor pb-2">
                 Book Photo url
               </label>

@@ -29,7 +29,7 @@ const AllBooksLayout = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [axios]);
 
   const { data: allBooks, isLoading: booksLoading } = useAllBooksQuery(
     category,
@@ -79,7 +79,7 @@ const AllBooksLayout = () => {
           )}
         </div>
         <div className="flex justify-end mt-6">
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-3">
             <button onClick={handlePrev} className="btn btn-ghost ">
               prev
             </button>

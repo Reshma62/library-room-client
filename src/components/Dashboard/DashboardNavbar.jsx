@@ -302,7 +302,7 @@ const DashboardNavbar = ({ outLet }) => {
                 </div>
               </nav>
             </section>
-            <section className="px-20">{outLet}</section>
+            <section className="px-5 lg:px-20">{outLet}</section>
           </div>
         </div>
       </div>
