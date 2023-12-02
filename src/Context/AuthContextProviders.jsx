@@ -11,7 +11,6 @@ import {
 } from "firebase/auth";
 import auth from "../../firebase.confige";
 
-import baseUrl from "../utils/baseUrl";
 import useAxios from "../Hooks/useAxios";
 export const AuthContext = createContext(null);
 const AuthContextProviders = ({ children }) => {
